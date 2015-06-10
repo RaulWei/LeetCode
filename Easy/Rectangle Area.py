@@ -1,4 +1,5 @@
-__author__ = 'Wang'
+# -*- coding: UTF-8 -*-
+# __author__ = 'Wang'
 
 class Solution:
     # @param {integer} A
