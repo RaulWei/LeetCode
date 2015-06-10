@@ -22,13 +22,13 @@ class Solution:
         if l_d_x <= r_u_x and l_d_y <= r_u_y:
             # 判断相交
             area_3 = self.computeRectArea(l_d_x, l_d_y, r_u_x, r_u_y)
-        return area_1+area_2-area_3
+        return area_1 + area_2 - area_3
 
     def computeRectArea(self, l_d_x, l_d_y, r_u_x, r_u_y):
         # 给定左下角坐标和右上角坐标 计算矩形面积
         x = r_u_x - l_d_x
         y = r_u_y - l_d_y
-        return x*y
+        return x * y
 
 if __name__ == '__main__':
     sol = Solution()
