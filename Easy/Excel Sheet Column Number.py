@@ -45,4 +45,5 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.titleToNumber('AB'))
+    print(sol.titleToNumber('BZ'))
+    print(sol.titleToNumber('AZ'))
