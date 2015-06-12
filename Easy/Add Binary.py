@@ -8,7 +8,7 @@ class Solution:
     def addBinary(self, a, b):
         p1 = a[::-1]
         p2 = b[::-1]
-        
+
         pass
 
 if __name__ == '__main__':
