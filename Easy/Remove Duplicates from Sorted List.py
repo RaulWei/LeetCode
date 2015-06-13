@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+删除链表的重复元素
+i 遍历指针
+j 结果指针
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
