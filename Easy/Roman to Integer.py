@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+罗马数字转换为阿拉伯数字
+当前数比下一个大就加上对应值
+当前数比下一个小就减去对应值
+'''
+
 class Solution:
     # @param {string} s
     # @return {integer}
