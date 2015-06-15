@@ -22,13 +22,6 @@ class Solution:
             return True
         return False
 
-    def str2Int(self, str):
-        try:
-            num = int(str)
-        except:
-            num = -1 * int(str[1])
-        return num
-
     def calc(self, num1, num2, ope):
         num1 = int(num1)
         num2 = int(num2)
