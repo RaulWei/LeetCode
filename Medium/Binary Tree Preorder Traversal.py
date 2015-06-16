@@ -40,4 +40,4 @@ if __name__ == '__main__':
     p2.left = p4
     p2.right = p5
     sol = Solution()
-    print(sol.preorderTraversal(p1))
+    print(sol.preorderTraversal(None))
