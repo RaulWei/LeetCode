@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+递归中序遍历二叉树
+中序：先左子树，再cur，再右子树
+'''
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
