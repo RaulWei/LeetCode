@@ -3,7 +3,8 @@ __author__ = 'Wang'
 
 '''
 1->2->3, 20000000000
-超过最大递归深度了
+超过最大递归深度了 对k剪枝 k %= lens
+递归简单模拟 虽然最后过了 不过速度不是一般的慢
 '''
 
 # Definition for singly-linked list.
@@ -19,16 +20,24 @@ class Solution:
     def rotateRight(self, head, k):
         if not head:
             return None
-        if k == 0:
+        if k <= 0:
             return head
         virtual = ListNode(-1)
         pre, cur = virtual, head
         pre.next = head
+        lens = 1
         while cur.next:
             cur = cur.next
             pre = pre.next
+            lens += 1
+        # lens表示链表长度 对k剪枝
+        if lens <= k:
+            k %= lens
+            if k == 0:
+                return head
         # 此时cur指向链表最后一个
         if cur != head:
+            # cur==head说明链表只有一个节点 那么怎么旋转都是自己
             cur.next = head
             pre.next = None
         return self.rotateRight(cur, k-1)
