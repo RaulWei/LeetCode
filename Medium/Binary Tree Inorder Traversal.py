@@ -1,11 +1,5 @@
 # -*- coding: UTF-8 -*-
-__author__ = 'Wang'
-
-'''
-递归前序遍历二叉树
-依旧需要注意参数传递
-自己写一个递归函数嵌套在给定的函数中
-'''
+__author__ = 'weimw'
 
 # Definition for a binary tree node.
 class TreeNode:
@@ -15,18 +9,18 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def preorder(self, root, res):
+    def inorder(self, root, res):
         if not root:
             return
+        self.inorder(root.left, res)
         res.append(root.val)
-        self.preorder(root.left, res)
-        self.preorder(root.right, res)
+        self.inorder(root.right, res)
 
     # @param {TreeNode} root
     # @return {integer[]}
-    def preorderTraversal(self, root):
+    def inorderTraversal(self, root):
         res = []
-        self.preorder(root, res)
+        self.inorder(root, res)
         return res
 
 if __name__ == '__main__':
@@ -40,4 +34,4 @@ if __name__ == '__main__':
     p2.left = p4
     p2.right = p5
     sol = Solution()
-    print(sol.preorderTraversal(p1))
+    print(sol.inorderTraversal(p1))
