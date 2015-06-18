@@ -12,7 +12,17 @@ class Solution:
     # @param {integer} target
     # @return {integer[]}
     def twoSum(self, nums, target):
-        pass
+        dict = {}
+        res = []
+        for i in range(len(nums)):
+            if target - nums[i] in dict:
+                # 如果target - nums[i]在字典中了 说明两个数都找到了 返回结果
+                res.append(dict[target - nums[i]] + 1)
+                res.append(i + 1)
+                return res
+            # 否则把当前数以及下标插入字典
+            dict[nums[i]] = i
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.twoSum([2, 7, 11, 15], 9))
