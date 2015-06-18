@@ -7,9 +7,9 @@ __author__ = 'Wang'
 初态： f(len-1) = 0
 终态： max{f[n]}, 0 <= n < len
 递推公式：
-if 跳过f[i+1]的下一个字符 == ')' 并且再往后一个 还没有越界
+if s[i]=='(' and 跳过f[i+1]的下一个字符 == ')' 并且再往后一个 还没有越界
     f(i) = f[i+1] + 2 +f[f[i+1]+2]
-http://blog.csdn.net/cfc1243570631/article/details/9304525
+参考http://blog.csdn.net/cfc1243570631/article/details/9304525
 '''
 
 class Solution:
