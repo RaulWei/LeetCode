@@ -17,7 +17,13 @@ class Solution:
     # @param {ListNode} head
     # @return {ListNode}
     def swapPairs(self, head):
-        pass
+        if not head or not head.next:
+            return head
+        t = head.next
+        head.next = self.swapPairs(head.next.next)
+        t.next = head
+        return t
+
 
 if __name__ == '__main__':
     p1 = ListNode(1)
@@ -25,5 +31,10 @@ if __name__ == '__main__':
     p3 = ListNode(3)
     p4 = ListNode(4)
     p5 = ListNode(5)
+    p1.next = p2
+    p2.next = p3
+    p3.next = p4
+    p4.next = p5
 
     sol = Solution()
+    sol.swapPairs(p1)
