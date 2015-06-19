@@ -28,6 +28,21 @@ class Solution:
                 # 剪枝
                 if len(longestPRes) >= (len(s) - i) * 2 or len(longestPRes) >= i * 2:
                     break
+
+            while i >= 0 and i < lens - 1:
+                step = 0
+                longestP = ''
+                while i - step >= 0 and i + 1 + step < lens:
+                    if s[i - step] == s[i + 1 + step]:
+                        longestP = s[i - step] + s[i + 1 + step]
+                    else:
+                        break
+                    step += 1
+                if len(longestP) > len(longestPRes):
+                    longestPRes = longestP
+                    if len(longestPRes) >= (len(s) - i) * 2 or len(longestPRes) >= i * 2:
+                        break
+
             i = (i + 1) * ((-1) ** (i % 2))
         return longestPRes
 
