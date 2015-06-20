@@ -20,8 +20,8 @@ class Solution:
             for j in range(lens):
                 if i >= j:
                     f[i][j] = True
-        for i in range(lens):
-            for j in range(lens):
+        for i in range(0, lens)[::-1]:
+            for j in range(0, lens)[::-1]:
                 if i+1 < lens and j-1 >= 0 and f[i+1][j-1] is True and s[i] == s[j]:
                     f[i][j] = True
         max, low, high = 0, 0, 0
