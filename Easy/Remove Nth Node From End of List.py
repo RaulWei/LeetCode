@@ -23,8 +23,10 @@ class Solution:
         virtual.next = head
         slow, fast = virtual, virtual
         for i in range(n + 1):
+            # 将fast指针向前移动n+1个
             fast = fast.next
         while fast:
+            # 双指针同时移动
             fast = fast.next
             slow = slow.next
         slow.next = slow.next.next
