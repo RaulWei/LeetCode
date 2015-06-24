@@ -2,7 +2,8 @@
 __author__ = 'Wang'
 
 '''
-二进制的方法 O(n)
+二进制的方法 大大提高速度
+参考 http://blog.csdn.net/fengbingyang/article/details/12236121
 '''
 
 class Solution:
