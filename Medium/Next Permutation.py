@@ -27,7 +27,6 @@ class Solution:
         nums[j] = t
         # 将nums[n-1]到nums[i]重新排序
         nums[i: len_nums] = sorted(nums[i: len_nums])
-        print(nums)
 
 
 if __name__ == '__main__':
