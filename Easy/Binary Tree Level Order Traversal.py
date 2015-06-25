@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+利用队列进行层序遍历二叉树
+小变种 根据层级划分
+'''
+
 from collections import deque
 
 # Definition for a binary tree node.
@@ -27,6 +32,7 @@ class Solution:
             if t[0].right:
                 queue.append([t[0].right, t[1] + 1])
             res_t.append([t[0].val, t[1]])
+        # 根据层级划分
         res = [[] for i in range(res_t[-1][1])]
         for i in range(len(res_t)):
             res[res_t[i][1] - 1].append(res_t[i][0])
