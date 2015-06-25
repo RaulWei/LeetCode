@@ -3,7 +3,7 @@ __author__ = 'Wang'
 
 '''
 二分
-break出循环的条件还是挺蛋疼
+注意边界条件 防止死循环
 '''
 
 class Solution:
@@ -12,7 +12,6 @@ class Solution:
     # @return {boolean}
     def searchMatrix(self, matrix, target):
         # 先确定在哪一行
-        row = 0
         low = 0
         high = len(matrix) - 1
         while high > low:
@@ -42,5 +41,5 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    # print(sol.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,50]], 3)
+    print(sol.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,50]], 3))
     print(sol.searchMatrix([[1], [3]], 3))
