@@ -39,13 +39,15 @@ class Trie:
     # Returns if the word is in the trie.
     def search(self, word):
         root = self.root
-        for w in word:
+        for i in range(len(word)):
             for son in root.son:
-                if w == son.char:
+                if word[i] == son.char:
                     root = son
-                    if w == word[-1] and root.isWord is True:
+                    if i == len(word) - 1 and root.isWord is True:
                         return True
                     break
+            if not root:
+                return False
         return False
 
     # @param {string} prefix
@@ -54,11 +56,11 @@ class Trie:
     # that starts with the given prefix.
     def startsWith(self, prefix):
         root = self.root
-        for w in prefix:
+        for i in range(len(prefix)):
             for son in root.son:
-                if w == son.char:
+                if prefix[i] == son.char:
                     root = son
-                    if w == prefix[-1]:
+                    if i == len(prefix) - 1:
                         return True
                     break
         return False
