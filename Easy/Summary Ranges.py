@@ -2,6 +2,8 @@
 __author__ = 'weimw'
 
 '''
+双指针思想
+比如 given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 '''
 
 class Solution:
