@@ -1,14 +1,20 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+模拟快排 分治思想
+'''
+
 class Solution:
     def myQSort(self, nums, k, left, right):
         pivot = nums[left]
         i, j = left, right
         while i < j:
             while nums[j] >= pivot and i < j:
+                # 注意要加上i < j的判断
                 j -= 1
             while nums[i] <= pivot and i < j:
+                # 注意要加上i < j的判断
                 i += 1
             if i < j:
                 t = nums[j]
@@ -17,6 +23,7 @@ class Solution:
         nums[left] = nums[i]
         nums[i] = pivot
         len_nums = right - left + 1
+        # 注意以下的判断条件和传参
         if k == len_nums - (i - left):
             return nums[i]
         elif k < len_nums - (i - left):
@@ -34,6 +41,6 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.findKthLargest([3,2,1,5,6,4], 2))
+    print(sol.findKthLargest([3, 2, 1, 5, 6, 4], 2))
     print(sol.findKthLargest([1], 1))
     print(sol.findKthLargest([2, 2], 1))
