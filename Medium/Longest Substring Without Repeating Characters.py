@@ -2,13 +2,13 @@
 __author__ = 'weimw'
 
 '''
-f[i]以i结尾的最长非重复字符串长度
+f[i]表示以i结尾的最长非重复字符串长度
 初态: f[0] = 1
 终态: max{f[i]}, 0 <= i < len(s)
 递推公式:
-if s[i] not in s[i-1-f[i]: i-1]
+if s[i] not in s[i-f[i-1]: i-1]
     f[i] = f[i-1] + 1
-else f[i] =
+else f[i] = i - p (p表示s[i]在s[i-f[i-1]: i-1]中的位置)
 '''
 
 class Solution:
