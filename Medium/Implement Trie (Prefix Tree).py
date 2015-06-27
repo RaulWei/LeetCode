@@ -40,12 +40,16 @@ class Trie:
     def search(self, word):
         root = self.root
         for i in range(len(word)):
+            find = False
             for son in root.son:
                 if word[i] == son.char:
                     root = son
+                    find = True
                     if i == len(word) - 1 and root.isWord is True:
                         return True
                     break
+            if find is False:
+                return False
             if not root:
                 return False
         return False
@@ -57,12 +61,16 @@ class Trie:
     def startsWith(self, prefix):
         root = self.root
         for i in range(len(prefix)):
+            find = False
             for son in root.son:
                 if prefix[i] == son.char:
                     root = son
+                    find = True
                     if i == len(prefix) - 1:
                         return True
                     break
+            if find is False:
+                return False
         return False
 
 if __name__ == '__main__':
@@ -70,5 +78,8 @@ if __name__ == '__main__':
     trie.insert('s')
     trie.insert('so')
     trie.insert('keyy')
-    print(trie.search('key'))
-    print(trie.startsWith('key'))
+    trie.insert('keyo')
+    trie.insert('soap')
+    print(trie.search('eso'))
+    print(trie.startsWith('ey'))
+    print(trie.startsWith('keyy'))
