@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+字典树的构造
+'''
+
 class TrieNode:
     # Initialize your data structure here.
     def __init__(self, char=''):
@@ -43,15 +47,16 @@ class Trie:
             find = False
             for son in root.son:
                 if word[i] == son.char:
+                    # 找到word[i]
                     root = son
                     find = True
                     if i == len(word) - 1 and root.isWord is True:
                         return True
                     break
             if find is False:
+                # word[i]没找到 可以直接返回False
                 return False
-            if not root:
-                return False
+        # 例如insert('ab'), search('a')
         return False
 
     # @param {string} prefix
@@ -70,8 +75,8 @@ class Trie:
                         return True
                     break
             if find is False:
+                # prefix[i]没找到可以直接返回False
                 return False
-        return False
 
 if __name__ == '__main__':
     trie = Trie()
