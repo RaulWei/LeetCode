@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+判断一棵二叉树是否为平衡二叉树
+即左右子树深度差是否小于等于1
+'''
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
