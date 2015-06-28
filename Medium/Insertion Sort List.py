@@ -27,7 +27,7 @@ class Solution:
             pre, cur = virtual, virtual.next
             while cur.val < head.val:
                 cur = cur.next
-                pre = cur.next
+                pre = pre.next
             t = head
             head = head.next
             pre.next = t
@@ -36,7 +36,11 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    p1 = ListNode(2)
-    p2 = ListNode(1)
+    p1 = ListNode(4)
+    p2 = ListNode(2)
+    p3 = ListNode(1)
+    p4 = ListNode(3)
     p1.next = p2
+    p2.next = p3
+    p3.next = p4
     sol.insertionSortList(p1)
