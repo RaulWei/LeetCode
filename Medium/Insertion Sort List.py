@@ -16,11 +16,13 @@ class Solution:
         virtual = ListNode('res')
         virtual.next, tail = head, head
         head = head.next
+        tail.next = None
         while head:
             if head.val >= tail.val:
                 tail.next = head
-                tail = tail.next
                 head = head.next
+                tail = tail.next
+                tail.next  = None
                 continue
             pre, cur = virtual, virtual.next
             while cur.val < head.val:
