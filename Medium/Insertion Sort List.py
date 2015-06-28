@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+链表的插入排序
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -19,6 +23,7 @@ class Solution:
         tail.next = None
         while head:
             if head.val >= tail.val:
+                # 保留结果链表的尾巴 与新增节点比较 剪枝提速
                 tail.next = head
                 head = head.next
                 tail = tail.next
@@ -28,6 +33,7 @@ class Solution:
             while cur.val < head.val:
                 cur = cur.next
                 pre = pre.next
+            # 插入新增节点
             t = head
             head = head.next
             pre.next = t
