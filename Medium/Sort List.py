@@ -39,7 +39,6 @@ class Solution:
             pre.next = right
         return virtual.next
 
-
     # @param {ListNode} head
     # @return {ListNode}
     def sortList(self, head):
