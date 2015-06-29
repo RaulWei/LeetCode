@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+贴了Insert Interval.py代码
+一模一样的思路 1A
+'''
+
 # Definition for an interval.
 class Interval:
     def __init__(self, s=0, e=0):
