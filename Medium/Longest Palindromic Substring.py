@@ -24,6 +24,7 @@ class Solution:
         T = self.preProcess(s)
         P = [0 for i in range(len(T))]
         C, R = 0, 0
+        
         # 构造P数组
         for i in range(1, len(T) - 1):
             # 根据对称性质得到P[i] 提速的关键
