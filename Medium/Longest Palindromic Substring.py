@@ -25,9 +25,20 @@ class Solution:
         C, R = 0, 0
         # 构造P数组
         for i in range(1, len(T) - 1):
+            i_mirror = 2 * C - i
+            if R > i:
+                if P[i_mirror] <= R - i:
+                    P[i] = P[i_mirror]
+                else:
+                    P[i] = R - i
+
             # 以i为中心扩展回文
             while T[i + P[i] + 1] == T[i - P[i] - 1]:
                 P[i] += 1
+
+            if i + P[i] > R:
+                C = i
+                R = i + P[i]
 
         # 从P数组中找最大回文
         max, center = 0, 0
