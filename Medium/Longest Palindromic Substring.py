@@ -3,6 +3,7 @@ __author__ = 'Wang'
 
 '''
 马拉车算法 时间复杂度O(N)
+详解：http://articles.leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 '''
 
 class Solution:
@@ -25,6 +26,7 @@ class Solution:
         C, R = 0, 0
         # 构造P数组
         for i in range(1, len(T) - 1):
+            # 根据对称性质得到P[i] 提速的关键
             i_mirror = 2 * C - i
             if R > i:
                 if P[i_mirror] <= R - i:
@@ -36,6 +38,7 @@ class Solution:
             while T[i + P[i] + 1] == T[i - P[i] - 1]:
                 P[i] += 1
 
+            # 移动对称中心C的位置 以及右边界位置
             if i + P[i] > R:
                 C = i
                 R = i + P[i]
