@@ -16,7 +16,7 @@ class Solution:
         if len(p) >= 2:
             # P的下一个不是*
             if p[1] != '*':
-                if s[0] == p[0] or (p[0] == '.' and s):
+                if s and (s[0] == p[0] or (p[0] == '.' and s)):
                     return self.isMatch(s[1::], p[1::])
             # p的下一个是*
             while s and (s[0] == p[0] or (p[0] == '.' and s)):
@@ -31,5 +31,6 @@ class Solution:
 if __name__ == '__main__':
     sol = Solution()
     # print(sol.isMatch('aab', 'c*a*b'))
-    print(sol.isMatch('aa', 'a*'))
-    print(sol.isMatch('a', '.*..a*'))
+    print(sol.isMatch('aa', 'a'))
+    # print(sol.isMatch('a', '.*..a'))
+    # print(sol.isMatch("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*c"))
