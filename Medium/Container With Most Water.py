@@ -6,13 +6,32 @@ __author__ = 'weimw'
 '''
 
 class Solution:
+    def getArea(self, height, left, right):
+        if right >= left:
+            return min(height[left], height[right]) * (right - left)
+        return 0
+
     # @param {integer[]} height
     # @return {integer}
     def maxArea(self, height):
-        left, right = height[0], height[-1]
-        area = min(left, right) * (right - left)
+        if len(height) <= 1:
+            return 0
+        mleft, mright = 0, len(height) - 1
+        left, right = mleft, mright
+        mArea = self.getArea(height, left, right)
         while left < right:
-        pass
+            while left < len(height) - 1 and height[left] >= height[left+1]:
+                left += 1
+            left += 1
+            if mArea < self.getArea(height, left, right):
+                mArea = self.getArea(height, left, right)
+            while right > 0 and height[right] >= height[right - 1]:
+                right -= 1
+            right -= 1
+            if mArea < self.getArea(height, left, right):
+                mArea = self.getArea(height, left, right)
+        return mArea
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.maxArea([1, 1]))
