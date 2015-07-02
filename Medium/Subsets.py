@@ -11,6 +11,7 @@ import copy
 class Solution:
     def backtracking(self, step, nums, res_t, res):
         if step == len(nums):
+            # 停止条件
             res_t_cp = copy.deepcopy(res_t)
             res.append(res_t_cp)
             return
@@ -26,6 +27,7 @@ class Solution:
     # @return {integer[][]}
     def subsets(self, nums):
         res_t, res = [], []
+        # 按照递增顺序排列
         nums.sort()
         self.backtracking(0, nums, res_t, res)
         return res
