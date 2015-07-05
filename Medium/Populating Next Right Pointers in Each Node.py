@@ -1,7 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
-from collections import deque
+'''
+实现二叉树结点的next指向
+此方法只适合完美二叉树
+'''
 
 # Definition for binary tree with next pointer.
 class TreeLinkNode:
@@ -16,22 +19,16 @@ class Solution:
     # @return nothing
     def connect(self, root):
         if not root:
-            return []
-        queue = deque([])
-        level = 1
-        queue.append([root, level])
-        res_t = []
-        while queue:
-            t = queue.popleft()
-            if t[0].left:
-                queue.append([t[0].left, t[1] + 1])
-            if t[0].right:
-                queue.append([t[0].right, t[1] + 1])
-            res_t.append([t[0], t[1]])
-        # 根据队列里层序树节点构造next关系
-        for i in range(1, len(res_t)):
-            if res_t[i-1][1] == res_t[i][1]:
-                res_t[i-1][0].next = res_t[i][0]
+            return
+        pre, cur = root, None
+        while pre.left:
+            cur = pre
+            while cur:
+                cur.left.next = cur.right
+                if cur.next:
+                    cur.right.next = cur.next.left
+                cur = cur.next
+            pre = pre.left
         return
 
 if __name__ == '__main__':
