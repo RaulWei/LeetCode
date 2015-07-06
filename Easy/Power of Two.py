@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+判断一个数是不是2的幂
+如果是的话 那么2进制表示将只有一个1 剩下全是0
+'''
+
 class Solution:
     # @param {integer} n
     # @return {boolean}
