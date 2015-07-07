@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+从二叉搜索树中找到第k小
+'''
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -22,10 +26,13 @@ class Solution:
     def kthSmallest(self, root, k):
         lChildNum = self.totalTreeNodeNum(root.left)
         if k <= lChildNum:
+            # 第k小在左子树中找
             return self.kthSmallest(root.left, k)
         if lChildNum + 1 == k:
+            # 第k小就是根节点
             return root.val
         if k > lChildNum + 1:
+            # 第k小在右子树中找 更新k
             return self.kthSmallest(root.right, k - lChildNum - 1)
 
 if __name__ == '__main__':
