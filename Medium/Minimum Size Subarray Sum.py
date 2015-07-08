@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+滑动窗口法
+先移动e指针找到符合情况
+再移动b指针缩小尝试范围
+'''
+
 class Solution:
     # @param {integer} s
     # @param {integer[]} nums
