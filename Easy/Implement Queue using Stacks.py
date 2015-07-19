@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+用栈实现队列
+python下我用序列模拟栈来实现
+'''
+
 class Queue:
     # initialize your data structure here.
     def __init__(self):
