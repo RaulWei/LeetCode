@@ -2,7 +2,11 @@
 __author__ = 'Wang'
 
 '''
-从最后开始往前遍历
+从最后开始往前遍历是解本题的技巧
+遇到数字先存入数字栈中
+遇到空格跳过
+遇到'('开始一系列处理
+遇到非'('的符号先存入符号栈中
 '''
 
 class Solution:
@@ -37,6 +41,7 @@ class Solution:
             else:
                 stkChar.append(s[i])
         while stkChar:
+            # 直到把stkChar栈清空为止
             self.calc(stkNum, stkChar)
         return stkNum[0]
 
