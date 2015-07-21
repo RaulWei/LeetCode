@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+赋予当前node的值为下一个node的值
+然后删除掉下一个node
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
