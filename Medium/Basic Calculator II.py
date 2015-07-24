@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+s只包含空格 数字 加减乘除 没有括号
+从左向右扫描 依次处理
+'''
+
 class Solution:
     # @param {string} s
     # @return {integer}
@@ -28,6 +33,7 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.calculate('14-3/2'))
     print(sol.calculate('3+2*2'))
     print(sol.calculate(' 3/2 '))
     print(sol.calculate(' 3+5 / 2 '))
