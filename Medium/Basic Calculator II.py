@@ -24,7 +24,12 @@ class Solution:
                 elif sign == '*':
                     stk.append(stk.pop() * num)
                 elif sign == '/':
-                    stk.append(stk.pop() / num)
+                    dividend = stk.pop()
+                    if dividend >= 0:
+                        sig = 1
+                    else:
+                        sig = -1
+                    stk.append(abs(dividend) // num * sig)
                 sign = s[i]
                 num = 0
         while stk:
