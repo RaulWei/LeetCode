@@ -15,7 +15,7 @@ class Solution:
         if not root:
             return 0
         rLeft, rRight = root, root
-        cLeft, cRight = 1, 1
+        cLeft, cRight = 0, 0
         while rLeft:
             rLeft =  rLeft.left
             cLeft += 1
@@ -28,4 +28,6 @@ class Solution:
             return 1 + self.countNodes(root.left) + self.countNodes(root.right)
 
 if __name__ == '__main__':
+    p1 = TreeNode(1)
     sol = Solution()
+    print(sol.countNodes(p1))
