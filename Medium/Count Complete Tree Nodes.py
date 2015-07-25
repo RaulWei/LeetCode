@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+计算完全二叉树的节点数
+利用完全二叉树的性质来加速
+结合递归
+'''
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
