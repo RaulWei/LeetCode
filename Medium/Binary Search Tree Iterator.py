@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+实际上就是实现二叉搜索树的中序遍历 迭代写法
+'''
+
 # Definition for a  binary tree node
 # class TreeNode:
 #     def __init__(self, x):
@@ -17,10 +21,12 @@ class BSTIterator:
 
     # @return a boolean, whether we have a next smallest number
     def hasNext(self):
+        # 是否有下一个最小值
         return self.stack
 
     # @return an integer, the next smallest number
     def next(self):
+        # 求下一个最小值
         res = self.stack.pop()
         self.pushAll(res.right)
         return res.val
