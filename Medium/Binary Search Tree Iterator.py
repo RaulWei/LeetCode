@@ -15,8 +15,9 @@ class BSTIterator:
 
     # @return a boolean, whether we have a next smallest number
     def hasNext(self):
-        if self.root.left:
-            return True
+        if not self.root or not self.root.left:
+            return False
+        return True
 
     # @return an integer, the next smallest number
     def next(self):
