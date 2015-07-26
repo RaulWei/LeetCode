@@ -15,14 +15,15 @@ class BSTIterator:
 
     # @return a boolean, whether we have a next smallest number
     def hasNext(self):
-        if not self.root or not self.root.left:
+        if not self.root:
             return False
         return True
 
     # @return an integer, the next smallest number
     def next(self):
+        res = self.root.val
         self.root = self.root.left
-        return self.root
+        return res
 
 # Your BSTIterator will be called like this:
 # i, v = BSTIterator(root), []
