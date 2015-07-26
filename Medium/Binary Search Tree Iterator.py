@@ -11,19 +11,24 @@ __author__ = 'weimw'
 class BSTIterator:
     # @param root, a binary search tree's root node
     def __init__(self, root):
+        self.stack = list()
         self.root = root
+        self.pushAll(root)
 
     # @return a boolean, whether we have a next smallest number
     def hasNext(self):
-        if not self.root:
-            return False
-        return True
+        return self.stack
 
     # @return an integer, the next smallest number
     def next(self):
-        res = self.root.val
-        self.root = self.root.left
-        return res
+        res = self.stack.pop()
+        self.pushAll(res.right)
+        return res.val
+
+    def pushAll(self, root):
+        while root:
+            self.stack.append(root)
+            root = root.left
 
 # Your BSTIterator will be called like this:
 # i, v = BSTIterator(root), []
