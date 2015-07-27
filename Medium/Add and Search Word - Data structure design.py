@@ -3,7 +3,7 @@ __author__ = 'weimw'
 
 '''
 添加和查找单词
-字典树
+字典树 + 回溯法
 '''
 
 class TrieNode:
@@ -43,37 +43,17 @@ class WordDictionary:
     def search(self, word):
         return self.searchWord(word, self.root)
 
-    # def searchWord(self, word, rt):
-    #     root = rt
-    #     for i in range(len(word)):
-    #         if word[i] == '.':
-    #             if i == len(word) - 1:
-    #                 for son in root.son:
-    #                     if son.isWord is True:
-    #                         return True
-    #                     return False
-    #             for son in root.son:
-    #                 find = True
-    #                 if self.searchWord(word[1::], son):
-    #                     return True
-    #         else:
-    #             find = False
-    #             for son in root.son:
-    #                 if word[i] == son.char:
-    #                     root = son
-    #                     find = True
-    #                     if i == len(word) - 1 and root.isWord is True:
-    #                         return True
-    #                     break
-    #                 if find is False:
-    #                     return False
-    #     return False
-
     def searchWord(self, word, rt):
+        # 将word[0]与rt的son们匹配
+
+        # 前两个if是结束条件
         if not rt:
+            # word还没匹配完
             return False
         if not word:
             return rt.isWord
+
+        # 分类讨论 '.'和非'.'
         if word[0] == '.':
             for son in rt.son:
                 if self.searchWord(word[1::], son):
@@ -91,9 +71,9 @@ if __name__ == '__main__':
     wordDictionary = WordDictionary()
     wordDictionary.addWord("a")
     wordDictionary.addWord("a")
-    # print(wordDictionary.search("."))
-    # print(wordDictionary.search("a"))
-    # print(wordDictionary.search("aa"))
-    # print(wordDictionary.search("a"))
-    # print(wordDictionary.search(".a"))
+    print(wordDictionary.search("."))
+    print(wordDictionary.search("a"))
+    print(wordDictionary.search("aa"))
+    print(wordDictionary.search("a"))
+    print(wordDictionary.search(".a"))
     print(wordDictionary.search("a."))
