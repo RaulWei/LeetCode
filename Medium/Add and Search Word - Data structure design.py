@@ -6,10 +6,17 @@ __author__ = 'weimw'
 字典树
 '''
 
+class TrieNode:
+    # 字典树节点的数据结构
+    def __init__(self, char=''):
+        self.son = []
+        self.char = char
+        self.isWord = False
+
 class WordDictionary:
     # initialize your data structure here.
     def __init__(self):
-
+        self.root = TrieNode()
 
     # @param {string} word
     # @return {void}
