@@ -43,35 +43,57 @@ class WordDictionary:
     def search(self, word):
         return self.searchWord(word, self.root)
 
-    def searchWord(self, word, rt):
-        root = rt
-        for i in range(len(word)):
-            if word[i] == '.':
-                if i == len(word) - 1:
-                    for son in root.son:
-                        if son.isWord is True:
-                            return True
-                        return False
-                for son in root.son:
-                    find = True
-                    if self.searchWord(word[1::], son):
-                        return True
-            else:
-                find = False
-                for son in root.son:
-                    if word[i] == son.char:
-                        root = son
-                        find = True
-                        if i == len(word) - 1 and root.isWord is True:
-                            return True
-                        break
-                    if find is False:
-                        return False
-        return False
+    # def searchWord(self, word, rt):
+    #     root = rt
+    #     for i in range(len(word)):
+    #         if word[i] == '.':
+    #             if i == len(word) - 1:
+    #                 for son in root.son:
+    #                     if son.isWord is True:
+    #                         return True
+    #                     return False
+    #             for son in root.son:
+    #                 find = True
+    #                 if self.searchWord(word[1::], son):
+    #                     return True
+    #         else:
+    #             find = False
+    #             for son in root.son:
+    #                 if word[i] == son.char:
+    #                     root = son
+    #                     find = True
+    #                     if i == len(word) - 1 and root.isWord is True:
+    #                         return True
+    #                     break
+    #                 if find is False:
+    #                     return False
+    #     return False
 
+    def searchWord(self, word, rt):
+        if not rt:
+            return False
+        if not word:
+            return rt.isWord
+        if word[0] == '.':
+            for son in rt.son:
+                if self.searchWord(word[1::], son):
+                    return True
+            return False
+        else:
+            find = False
+            for son in rt.son:
+                if word[0] == son.char:
+                    find = True
+                    return self.searchWord(word[1::], son)
+            return find
 
 if __name__ == '__main__':
     wordDictionary = WordDictionary()
     wordDictionary.addWord("a")
-    wordDictionary.addWord("ab")
-    print(wordDictionary.search(".b"))
+    wordDictionary.addWord("a")
+    # print(wordDictionary.search("."))
+    # print(wordDictionary.search("a"))
+    # print(wordDictionary.search("aa"))
+    # print(wordDictionary.search("a"))
+    # print(wordDictionary.search(".a"))
+    print(wordDictionary.search("a."))
