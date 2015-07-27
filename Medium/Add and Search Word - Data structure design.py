@@ -41,7 +41,19 @@ class WordDictionary:
     # Returns if the word is in the data structure. A word could
     # contain the dot character '.' to represent any one letter.
     def search(self, word):
-
+        root = self.root
+        for i in range(len(word)):
+            find = False
+            for w in root.son:
+                if word[i] == '.' or word[i] == w.char:
+                    root = w
+                    find = True
+                    if i == len(word) - 1 and root.isWord is True:
+                        return True
+                    break
+                if find is False:
+                    return False
+        return False
 
 
 # Your WordDictionary object will be instantiated and called as such:
