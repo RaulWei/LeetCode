@@ -31,7 +31,7 @@ class WordDictionary:
                     find = True
                     break
             if find is False:
-                root.son.append(word[i])
+                root.son.append(TrieNode(word[i]))
                 root = root.son[-1]
             if i == len(word) - 1:
                 root.isWord = True
@@ -41,22 +41,37 @@ class WordDictionary:
     # Returns if the word is in the data structure. A word could
     # contain the dot character '.' to represent any one letter.
     def search(self, word):
-        root = self.root
+        return self.searchWord(word, self.root)
+
+    def searchWord(self, word, rt):
+        root = rt
         for i in range(len(word)):
-            find = False
-            for w in root.son:
-                if word[i] == '.' or word[i] == w.char:
-                    root = w
+            if word[i] == '.':
+                if i == len(word) - 1:
+                    for son in root.son:
+                        if son.isWord is True:
+                            return True
+                        return False
+                for son in root.son:
                     find = True
-                    if i == len(word) - 1 and root.isWord is True:
+                    if self.searchWord(word[1::], son):
                         return True
-                    break
-                if find is False:
-                    return False
+            else:
+                find = False
+                for son in root.son:
+                    if word[i] == son.char:
+                        root = son
+                        find = True
+                        if i == len(word) - 1 and root.isWord is True:
+                            return True
+                        break
+                    if find is False:
+                        return False
         return False
 
 
-# Your WordDictionary object will be instantiated and called as such:
-# wordDictionary = WordDictionary()
-# wordDictionary.addWord("word")
-# wordDictionary.search("pattern")
+if __name__ == '__main__':
+    wordDictionary = WordDictionary()
+    wordDictionary.addWord("a")
+    wordDictionary.addWord("ab")
+    print(wordDictionary.search(".b"))
