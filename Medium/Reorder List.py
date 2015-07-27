@@ -11,6 +11,8 @@ class Solution:
     # @param {ListNode} head
     # @return {void} Do not return anything, modify head in-place instead.
     def reorderList(self, head):
+        if not head:
+            return
         p1, p2 = head, head
         while p2.next and p2.next.next:
             p1 = p1.next
