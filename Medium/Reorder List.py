@@ -40,7 +40,7 @@ class Solution:
             h2 = h2.next
             h.next = h1
             h = h.next
-            
+
         # return nothing
         head = r
 
