@@ -1,6 +1,14 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+L1 - L2 - ... Ln-1 - Ln -> L1 - Ln - L2 - Ln-1 ...
+
+1 找到串中心 把原串分隔 以h1,h2开头
+2 后半串h2求逆
+3 合并两串
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
@@ -13,12 +21,16 @@ class Solution:
     def reorderList(self, head):
         if not head:
             return
+
+        # splitList
         p1, p2 = head, head
         while p2.next and p2.next.next:
             p1 = p1.next
             p2 = p2.next.next
         h1, h2 = head, self.reverseList(p1.next)
         p1.next = None
+
+        # mergeList
         r, h = h1, h1
         while h1 and h2:
             h1 = h1.next
@@ -28,6 +40,8 @@ class Solution:
             h2 = h2.next
             h.next = h1
             h = h.next
+            
+        # return nothing
         head = r
 
     def reverseList(self, head):
