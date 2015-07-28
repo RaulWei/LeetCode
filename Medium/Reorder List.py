@@ -28,18 +28,17 @@ class Solution:
             h2 = h2.next
             h.next = h1
             h = h.next
-        return r
+        head = r
 
     def reverseList(self, head):
-        if not head:
-            return None
-        if not head.next:
-            return head
-        t = head.next
-        h = self.reverseList(head.next)
-        t.next = head
-        head.next = None
-        return h
+        # 迭代法求逆 解决递归过深
+        last, cur = None, head
+        while cur:
+            next = cur.next
+            cur.next = last
+            last = cur
+            cur = next
+        return last
 
 if __name__ == '__main__':
     sol = Solution()
