@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+回文构词法
+哈希
+'''
+
 class Solution:
     # @param {string} s
     # @param {string} t
@@ -19,6 +24,7 @@ class Solution:
             else:
                 return False
 
+        # 最后对词典进行判断 所以项全为0才返回True
         for w in dic:
             if dic[w] != 0:
                 return False
