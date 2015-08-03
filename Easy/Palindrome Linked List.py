@@ -11,8 +11,8 @@ class Solution:
     # @param {ListNode} head
     # @return {boolean}
     def isPalindrome(self, head):
-        if not head:
-            return False
+        if not head or not head.next:
+            return True
         # 找到中心点
         slow, fast = head, head
         while fast.next and fast.next.next:
