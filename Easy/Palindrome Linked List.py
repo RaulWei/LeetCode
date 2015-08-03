@@ -35,8 +35,17 @@ class Solution:
             head.next = pre
             pre = head
             head = next
-        return head
+        return pre
 
 if __name__ == '__main__':
+    p1 = ListNode(1)
+    p2 = ListNode(1)
+    p3 = ListNode(2)
+    p4 = ListNode(1)
+    p5 = ListNode(1)
+    p1.next = p2
+    p2.next = p3
+    p3.next = p4
+    p4.next = p5
     sol = Solution()
-
+    print(sol.isPalindrome(p1))
