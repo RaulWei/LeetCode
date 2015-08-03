@@ -1,6 +1,13 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+判断链表是否为回文
+1 找到中心点
+2 反转后半段
+3 比较前后半段是否相同
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
