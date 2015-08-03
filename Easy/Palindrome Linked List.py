@@ -15,8 +15,18 @@ class Solution:
             return False
         # 找到中心点
         slow, fast = head, head
-        
-        pass
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        # 切分为两段
+        h1, h2 = head, self.reverseLink(slow.next)
+        p1, p2 = h1, h2
+        # 比较两段
+        while p2:
+            if p1.val != p2.val:
+                return False
+            p1, p2 = p1.next, p2.next
+        return True
 
     def reverseLink(self, head):
         pre, next = None, head.next
@@ -25,6 +35,7 @@ class Solution:
             head.next = pre
             pre = head
             head = next
+        return head
 
 if __name__ == '__main__':
     sol = Solution()
