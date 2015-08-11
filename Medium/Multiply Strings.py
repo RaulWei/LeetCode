@@ -6,6 +6,8 @@ class Solution:
     # @param {string} num2
     # @return {string}
     def multiply(self, num1, num2):
+        if int(num1) == 0 or int(num2) == 0:
+            return '0'
         lens1 = len(num1)
         lens2 = len(num2)
         res = [0] * (lens1 + lens2)
@@ -20,8 +22,9 @@ class Solution:
             if c != 0:
                 res[i + j + 1] += c
                 c /= 10
-        return str(res[::-1])
+        return ''.join(str(e) for e in res)[::-1].lstrip('0')
 
 if __name__ == '__main__':
     sol = Solution()
     print(sol.multiply('9999', '99'))
+    print(sol.multiply('1', '1'))
