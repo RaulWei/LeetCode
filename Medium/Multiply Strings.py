@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+模拟整数相乘
+'''
+
 class Solution:
     # @param {string} num1
     # @param {string} num2
