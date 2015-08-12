@@ -2,10 +2,14 @@
 __author__ = 'weimw'
 
 '''
+不考虑0的情况
 f(n)表示从0到n一共有f(n)种解释
-初始：f(0)=1,f(1)=1or2
+初始：f(0)=1, f(1)=1 or f(1)=2
 终态：f(n)
 递推公式：f(n)=f(n-1) or f(n)=f(n-1)+f(n-2)
+
+考虑0的情况十分复杂
+详见代码
 '''
 
 class Solution:
@@ -13,12 +17,15 @@ class Solution:
     # @return {integer}
     def numDecodings(self, s):
         if not s:
+            # s为空
             return 0
         if len(s) == 1:
+            # s只有1位
             if s == '0':
                 return 0
             return 1
         if len(s) == 2:
+            # s只有2位
             if s[0] == '0':
                 return 0
             if s[1] == '0':
@@ -30,8 +37,7 @@ class Solution:
             return 1
 
         f = [1] * len(s)
-        # if int(s[0:2]) < 27:
-        #     f[1] = 2
+        # s包含3位及以上 讨论包含0的情况
         for i in range(0, len(s)):
             if i == 0:
                 if s[i] == '0':
