@@ -48,8 +48,12 @@ class Solution:
                     else:
                         f[i] = 2
             else:
-                if s[i] == '0':
-                    if int(s[i-1:i+1]) > 26 or int(s[i-1:i+1]) == 0:
+                if s[i-1] == '0':
+                    if s[i] == '0':
+                        return 0
+                    f[i] = f[i-1]
+                elif s[i] == '0':
+                    if int(s[i-1:i+1]) > 26:
                         return 0
                     f[i] = f[i-2]
                 else:
