@@ -15,17 +15,50 @@ class Solution:
         if not s:
             return 0
         if len(s) == 1:
+            if s == '0':
+                return 0
             return 1
+        if len(s) == 2:
+            if s[0] == '0':
+                return 0
+            if s[1] == '0':
+                if int(s) < 27:
+                    return 1
+                return 0
+            if int(s) < 27:
+                return 2
+            return 1
+
         f = [1] * len(s)
-        if int(s[0:2]) < 27:
-            f[1] = 2
-        for i in range(3, len(s)):
-            if int(s[i-2:i]) < 27:
-                f[i] = f[i-1] + f[i-2]
+        # if int(s[0:2]) < 27:
+        #     f[1] = 2
+        for i in range(0, len(s)):
+            if i == 0:
+                if s[i] == '0':
+                    return 0
+                f[i] = 1
+            elif i == 1:
+                if s[i] == '0':
+                    if int(s[0:i+1]) > 26:
+                        return 0
+                    f[i] = 1
+                else:
+                    if int(s[0:i+1]) > 26:
+                        f[i] = 1
+                    else:
+                        f[i] = 2
             else:
-                f[i] = f[i-1]
+                if s[i] == '0':
+                    if int(s[i-1:i+1]) > 26 or int(s[i-1:i+1]) == 0:
+                        return 0
+                    f[i] = f[i-2]
+                else:
+                    if int(s[i-1:i+1]) < 27:
+                        f[i] = f[i-1] + f[i-2]
+                    else:
+                        f[i] = f[i-1]
         return f[len(s) - 1]
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.numDecodings('12'))
+    print(sol.numDecodings('100'))
