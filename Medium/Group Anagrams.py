@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+利用字典和序列
+'''
+
 class Solution:
     # @param {string[]} strs
     # @return {string[][]}
