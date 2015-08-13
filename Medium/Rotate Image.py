@@ -1,6 +1,14 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'Wang'
 
+'''
+先上下翻转 - 再对角线翻转
+
+1 2 3    7 8 9    7 4 1
+4 5 6 -> 4 5 6 -> 8 5 2
+7 8 9    1 2 3    9 6 3
+'''
+
 class Solution:
     # @param {integer[][]} matrix
     # @return {void} Do not return anything, modify matrix in-place instead.
