@@ -6,6 +6,9 @@ __author__ = 'weimw'
 时间复杂度O(n) 空间复杂度O(1)
 
 归位之后希望是A[0] = 1, A[1] = 2, A[i] = i+1, ..
+
+参考解题报告
+http://www.cnblogs.com/AnnieKim/archive/2013/04/21/3034631.html
 '''
 
 class Solution:
