@@ -6,15 +6,16 @@ class Solution:
     # @return {integer}
     def firstMissingPositive(self, nums):
         for i in range(len(nums)):
-            while nums[i] > 0 and nums[i] < len(nums) and nums[i] != i:
+            while 0 < nums[i] <= len(nums) and nums[nums[i]-1] != nums[i]:
                 t = nums[i]
-                nums[i] = nums[nums[i]]
-                nums[nums[i]] = t
+                nums[i] = nums[t-1]
+                nums[t-1] = t
         for i in range(len(nums)):
-            if nums[i] != i:
-                return i
-        return len(nums)
+            if nums[i] != i+1:
+                return i+1
+        return len(nums)+1
 
 if __name__ == '__main__':
     sol = Solution()
     print(sol.firstMissingPositive([3, 4, -1, 1]))
+    print(sol.firstMissingPositive([1, 1]))
