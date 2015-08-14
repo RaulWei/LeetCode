@@ -19,11 +19,12 @@ class Solution:
                 if not self.isValidNum(valid, board[i][j]):
                     return False
         # subbox
-        i, j, k = 0, 0, 0
+        i = 0
         while i < 9:
+            j = 0
             while j < 9:
                 valid = [0] * 10
-                for k in range(10):
+                for k in range(9):
                     if not self.isValidNum(valid, board[i + k / 3][j + k % 3]):
                         return False
                 j += 3
@@ -40,5 +41,6 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    # print(sol.isValidSudoku(["..5.....6","....14...",".........",".....92..","5....2...",".......3.","...54....","3.....42.","...27.6.."]))
+    print(sol.isValidSudoku(["..5.....6","....14...",".........",".....92..","5....2...",".......3.","...54....","3.....42.","...27.6.."]))
     print(sol.isValidSudoku([".87654321","2........","3........","4........","5........","6........","7........","8........","9........"]))
+    print(sol.isValidSudoku(["......5..",".........",".........","93..2.4..","..7...3..",".........","...34....",".....3...",".....52.."]))
