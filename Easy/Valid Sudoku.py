@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+只验证摆法是否合法 不验证是否有解
+数独规则：每行每列每个小九宫格都包含1~9
+'''
+
 class Solution:
     # @param {character[][]} board
     # @return {boolean}
