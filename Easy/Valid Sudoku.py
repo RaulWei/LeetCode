@@ -15,9 +15,16 @@ class Solution:
                     return False
         # col
         for j in range(length):
+            valid = [0] * 10
             for i in range(length):
-
+                if not self.isValidNum(valid, board[i][j]):
+                    return False
         # subbox
+        i, j, k = 0, 0, 0
+        while i < 9:
+            while j < 9:
+                for k in range(10):
+                    pass
 
     def isValidNum(self, valid, num):
         if num == '.' or (1 <= int(num) <= 9 and not int(num) in valid):
