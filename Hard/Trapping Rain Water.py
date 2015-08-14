@@ -1,6 +1,15 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+water[i]表示下标为i处能够收集的雨水
+water[i] = min(maxleft, maxright) - height[i]
+
+两边向中间扫 一次遍历解决
+从左向右遍历到i 说明右边肯定有height比maxleft高 所以water[i] = maxleft - height[i]
+从右向左遍历到i 说明左边肯定有height比maxright高 所以water[i] = maxright - height[i]
+'''
+
 class Solution:
     # @param {integer[]} height
     # @return {integer}
