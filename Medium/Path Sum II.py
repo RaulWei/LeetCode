@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+深搜回溯
+找出所有深搜路径中从root到leaf和为给定sum的路径
+'''
+
 import copy
 
 # Definition for a binary tree node.
@@ -31,10 +36,8 @@ class Solution:
                 self.rest.append(root.val)
                 res_t_cp = copy.deepcopy(self.rest)
                 self.res.append(res_t_cp)
-                # for x in self.rest:
-                #     print(x)
                 self.rest.pop()
-        # print(root.val)
+            return
         self.rest.append(root.val)
         self.pathSum(root.left, sum - root.val)
         self.pathSum(root.right, sum - root.val)
