@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+import copy
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -9,15 +11,34 @@ class TreeNode:
         self.right = None
 
 class Solution:
+    def __init__(self):
+        self.rest = []
+        self.res = []
+
     # @param {TreeNode} root
     # @param {integer} sum
     # @return {integer[][]}
     def pathSum(self, root, sum):
+        self.backtracking(root, sum)
+        return self.res
+
+    def backtracking(self, root, sum):
         if not root:
             return
-        print(root.val)
-        self.pathSum(root.left, sum)
-        self.pathSum(root.right, sum)
+        if not root.left and not root.right:
+            # 叶子节点
+            if sum == root.val:
+                self.rest.append(root.val)
+                res_t_cp = copy.deepcopy(self.rest)
+                self.res.append(res_t_cp)
+                # for x in self.rest:
+                #     print(x)
+                self.rest.pop()
+        # print(root.val)
+        self.rest.append(root.val)
+        self.pathSum(root.left, sum - root.val)
+        self.pathSum(root.right, sum - root.val)
+        self.rest.pop()
 
 if __name__ == '__main__':
     p1 = TreeNode(5)
