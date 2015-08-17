@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+直接复用了函数mergeTwoLists
+简化了本题
+但是时间复杂度大概不理想
+'''
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
