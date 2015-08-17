@@ -11,6 +11,9 @@ class Solution:
     # @param {integer[]} nums2
     # @return {float}
     def findMedianSortedArrays(self, nums1, nums2):
+        if not nums1 and not nums2:
+            return None
+
         len1, len2 = len(nums1), len(nums2)
         if len1 > len2:
             # 确保nums1比nums2短
@@ -57,3 +60,5 @@ if __name__ == '__main__':
     sol = Solution()
     print(sol.findMedianSortedArrays([], [1]))
     print(sol.findMedianSortedArrays([1, 2, 3, 4],[1, 2, 3, 4]))
+    print(sol.findMedianSortedArrays([1], []))
+    print(sol.findMedianSortedArrays([], []))
