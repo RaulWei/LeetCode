@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+二分法 时间复杂度为O(log(min(len1, len2)))
+边界情况要考虑清楚
+'''
+
 class Solution:
     # @param {integer[]} nums1
     # @param {integer[]} nums2
@@ -8,6 +13,7 @@ class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
         len1, len2 = len(nums1), len(nums2)
         if len1 > len2:
+            # 确保nums1比nums2短
             nums1, nums2, len1, len2 = nums2, nums1, len2, len1
 
         imin, imax = 0, len1
@@ -22,7 +28,7 @@ class Solution:
             elif j > 0 and i < len1 and nums2[j - 1] > nums1[i]:
                 imin = i + 1
             else:
-                # 左右划分个数相同 并且左边划分都小于等于右边划分
+                # 左右划分个数相同或左边多一个 并且左边划分都小于等于右边划分
 
                 # 求左划分的最大
                 if i == 0:
