@@ -32,7 +32,7 @@ class Solution:
                 else:
                     m1 = max(nums1[i - 1], nums2[j - 1])
 
-                if (len1 + len2) / 2 == 1:
+                if (len1 + len2) % 2 == 1:
                     # 两个数组一共有奇数个元素
                     return m1
 
@@ -49,4 +49,5 @@ class Solution:
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.findMedianSortedArrays([1,2,3,4],[1,2,3,4]))
+    print(sol.findMedianSortedArrays([], [1]))
+    print(sol.findMedianSortedArrays([1, 2, 3, 4],[1, 2, 3, 4]))
