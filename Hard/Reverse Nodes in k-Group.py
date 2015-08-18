@@ -18,5 +18,7 @@ class Solution:
             cur = cur.next
             count += 1
         if count == k:
-            pass
+            cur = self.reverseKGroup(cur, k)
+            while count > 0:
+                pass
         return head
