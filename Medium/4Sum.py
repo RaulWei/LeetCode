@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+3个for 时间复杂度必然不会低
+根据3Sum修改的 固定前两个数得到newTarget
+这样就把题目转换为TwoSum
+'''
+
 class Solution:
     # @param {integer[]} nums
     # @param {integer} target
