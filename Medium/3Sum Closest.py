@@ -1,5 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
+
+'''
+类似3Sum 也是固定一端然后移动剩下两端
+时间复杂度O(n^2)
+'''
+
 import sys
 
 class Solution:
@@ -15,8 +21,9 @@ class Solution:
             while low < high:
                 sum = nums[i] + nums[low] + nums[high]
                 if target == sum:
+                    # 找到相等是最接近的 可以直接返回
                     return target
-                # 更新min
+                # 更新min和val
                 if min > abs(target - sum):
                     min = abs(target - sum)
                     val = sum
