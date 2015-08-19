@@ -17,7 +17,7 @@ class Solution:
                 i <<= 1
                 tmp_divs <<= 1
         res = res if positive else -res
-        return min(max(res, -2147483648), 2147483648)
+        return min(max(res, -2147483648), 2147483647)
 
 if __name__ == '__main__':
     sol = Solution()
