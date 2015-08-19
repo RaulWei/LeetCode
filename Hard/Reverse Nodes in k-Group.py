@@ -20,5 +20,15 @@ class Solution:
         if count == k:
             cur = self.reverseKGroup(cur, k)
             while count > 0:
-                pass
+                next = head.next
+                head.next = cur
+                cur = head
+                head = next
+                count -= 1
+            head = cur
         return head
+
+if __name__ == '__main__':
+    p1 = ListNode(1)
+    sol = Solution()
+    sol.reverseKGroup(p1, 1)
