@@ -6,7 +6,7 @@ class Solution:
     # @param {integer} divisor
     # @return {integer}
     def divide(self, dividend, divisor):
-        positive = dividend > 0 and divisor > 0
+        positive = (dividend > 0) is (divisor > 0)
         dividend, divisor = abs(dividend), abs(divisor)
         res = 0
         while dividend >= divisor:
@@ -18,3 +18,7 @@ class Solution:
                 tmp_divs <<= 1
         res = res if positive else -res
         return min(max(res, -2147483648), 2147483648)
+
+if __name__ == '__main__':
+    sol = Solution()
+    print(sol.divide(-1, -1))
