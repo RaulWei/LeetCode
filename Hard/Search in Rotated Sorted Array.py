@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+旋转后的有序数组还是可以用二分法找target
+'''
+
 class Solution:
     # @param {integer[]} nums
     # @param {integer} target
