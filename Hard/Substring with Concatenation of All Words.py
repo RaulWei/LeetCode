@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
+import copy
 
 class Solution:
     # @param {string} s
@@ -13,22 +14,30 @@ class Solution:
                 dic[words[i]] = 1
             else:
                 dic[words[i]] += 1
-        for i in range(len(s) - word_len * word_num):
+        # i = 0
+        # while i <= len(s) - word_len * word_num:
+        for i in range(len(s) - word_len * word_num + 1):
             if self.isivalid(i, s, word_num, word_len, dic):
                 res.append(i)
+            # i += word_len
         return res
 
     def isivalid(self, i, s, word_num, word_len, dic):
-        k = 0
+        k, local_dic = 0, {}
         while k < word_num:
-            if s[i + word_len * k: i + word_len * (k + 1)] not in dic:
+            word = s[i + word_len * k: i + word_len * (k + 1)]
+            if word not in dic:
                 return False
-            dic[s[i + word_len * k: i + word_len * (k + 1)]] -= 1
-            if dic[s[i + word_len * k: i + word_len * (k + 1)]] == 0:
-                dic.pop(s[i + word_len * k: i + word_len * (k + 1)])
+            if word in local_dic:
+                local_dic[word] += 1
+                if local_dic[word] > dic[word]:
+                    return False
+            else:
+                local_dic[word] = 1
             k += 1
         return True
 
 if __name__ == '__main__':
     sol = Solution()
     print(sol.findSubstring("barfoothefoobarman", ["foo", "bar"]))
+    print(sol.findSubstring("aaaa", ["a", "a", "a"]))
