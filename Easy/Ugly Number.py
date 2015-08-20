@@ -7,6 +7,10 @@ class Solution(object):
           :type num: int
           :rtype: bool
           """
+        if num == 0:
+            return False
+        if num == 1:
+            return True
         ugly_prime_factors = [2, 3, 5]
         for i in range(len(ugly_prime_factors)):
             while num % ugly_prime_factors[i] == 0:
