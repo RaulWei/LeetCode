@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+ugly_num 素数分解仅仅由2 3 5的乘方的乘积构成
+'''
+
 class Solution(object):
     def isUgly(self, num):
         """
