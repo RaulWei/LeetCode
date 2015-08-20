@@ -25,3 +25,7 @@ class Solution:
                 else:
                     high = mid - 1
         return -1
+
+if __name__ == '__main__':
+    sol = Solution()
+    print(sol.search([4, 5, 6, 7, 1, 2, 3], 4))
