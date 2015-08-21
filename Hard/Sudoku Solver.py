@@ -1,6 +1,16 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+http://blog.csdn.net/sbitswc/article/details/20683945
+这篇的思路很清晰 值得参考
+
+先放置 再判断
+如果合法则往下递归 如果不合法则清空刚才的放置进行下一次尝试
+
+终态要return True 这个别忘了
+'''
+
 class Solution(object):
     def solveSudoku(self, board):
         """
