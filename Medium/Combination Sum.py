@@ -2,6 +2,10 @@
 __author__ = 'weimw'
 import copy
 
+'''
+返回条件 + 剪枝条件 + 循环套递归
+'''
+
 class Solution(object):
     # :type candidates: List[int]
     # :type target: int
@@ -12,6 +16,7 @@ class Solution(object):
         self.DFS(target, res, path, candidates, 0)
         return res
 
+    # start是为了剪枝 得到都是非递减的答案
     def DFS(self, target, res, path, candidates, start):
         if target == 0:
             # 得到一个合法解
