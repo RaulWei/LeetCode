@@ -4,6 +4,9 @@ import copy
 
 '''
 返回条件 + 剪枝条件 + 循环套递归
+比Combination Sum不同在于这题中candidates出现的每个数只能用一次
+加个标记数组book即可解决
+同时 要求res中不包含重复解 那么加入res前进行判断即可
 '''
 
 class Solution(object):
@@ -29,6 +32,7 @@ class Solution(object):
             return False
         for i in range(start, len(candidates)):
             if candidates[i] <= target and book[i] == 0:
+                # 用过的candidate不再用 引入book标记数组
                 path.append(candidates[i])
                 book[i] = 1
                 self.DFS(target - candidates[i], res, path, candidates, i, book)
