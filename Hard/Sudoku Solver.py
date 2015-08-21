@@ -7,7 +7,19 @@ class Solution(object):
           :type board: List[List[str]]
           :rtype: void Do not return anything, modify board in-place instead.
           """
-        pass
+        self.DFS(board)
+
+    def DFS(self, board):
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    for k in '123456789':
+                        board[i][j] = k
+                        if self.isValid(board, i, j) and self.DFS(board):
+                            return True
+                        board[i][j] = '.'
+                    return False
+        return True
 
     # 判断在board[x][y]处放置的数是否合法
     def isValid(self, board, x, y):
