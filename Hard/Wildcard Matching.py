@@ -20,7 +20,7 @@ class Solution(object):
         f = [[0] * len(p)] * len(s)
 
         # 初始化初态f[0][j]
-        
+
         # 初始化初态f[i][0]
         if p[0] == '*':
             for i in range(len(s)):
