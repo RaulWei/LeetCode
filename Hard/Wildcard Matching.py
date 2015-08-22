@@ -20,7 +20,17 @@ class Solution(object):
         f = [[0] * len(p)] * len(s)
 
         # 初始化初态f[0][j]
-
+        if s[0] == p[0] or p[0] == '?' or p[0] == '*':
+            f[0][0] = True
+            for j in range(1, len(p)):
+                if p[j] != '*':
+                    break
+                f[0][j] = True
+            for k in range(j, len(p)):
+                f[0][k] = False
+        else:
+            for j in range(len(p)):
+                f[0][j] = False
         # 初始化初态f[i][0]
         if p[0] == '*':
             for i in range(len(s)):
@@ -28,3 +38,5 @@ class Solution(object):
         else:
             for i in range(1, len(s)):
                 f[i][0] = False
+
+        # 递推
