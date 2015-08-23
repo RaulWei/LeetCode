@@ -1,5 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
+
+'''
+注意
+1 字符串排序 要记得先对nums排序
+2 已经排序 选择下一个数字的时候避免和上一次选择重复
+'''
+
 import copy
 
 # :type nums: List[int]
@@ -25,6 +32,7 @@ class Solution(object):
                 self.backtracking(step + 1, nums, res_t, res, book)
                 book[i] = 0
                 while i < len(nums) - 1 and nums[i] == nums[i + 1]:
+                    # 避免回溯时和上次选择重复
                     i += 1
             i += 1
 
