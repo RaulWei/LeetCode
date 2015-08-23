@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+稍微修改N-Queens 在得到一个解的时候计数加一
+其他和N-Queens一样 可能复杂性高一些 但易于理解
+'''
+
 # :type n: int
 # :rtype: int
 class Solution(object):
