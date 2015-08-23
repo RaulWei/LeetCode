@@ -1,26 +1,34 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 import copy
+
+'''
+N皇后
+经典的先放置后判断的回溯法
+'''
+
 # :type n: int
 # :rtype: List[List[str]]
 class Solution(object):
     def solveNQueens(self, n):
         board = [['.' for col in range(n)] for row in range(n)]
         res = []
-        self.DFS(n, 0, 0, res, board)
+        self.DFS(n, 0, res, board)
         return res
 
-    def DFS(self, n, row, col, res, board):
+    def DFS(self, n, row, res, board):
         if row == n:
+            # 得到一组解 转换格式输出
             tmp, r = copy.deepcopy(board), []
             for t in tmp:
                 r.append(''.join(t))
             res.append(r)
             return
-        for j in range(col, n):
+        for j in range(n):
+            # 对某一确定行 循环判断其每一列找合格位置
             board[row][j] = 'Q'
             if self.isValid(row, j, n, board):
-                self.DFS(n, row + 1, 0, res, board)
+                self.DFS(n, row + 1, res, board)
             board[row][j] = '.'
 
     def isValid(self, x, y, n, board):
