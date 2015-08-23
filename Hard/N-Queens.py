@@ -11,13 +11,16 @@ class Solution(object):
         return res
 
     def DFS(self, n, row, col, res, board):
-        if row == n - 1 and self.isValid(row, col, n, board):
-            res.append(copy.deepcopy(board))
-            return True
+        if row == n:
+            tmp, r = copy.deepcopy(board), []
+            for t in tmp:
+                r.append(''.join(t))
+            res.append(r)
+            return
         for j in range(col, n):
             board[row][j] = 'Q'
-            if self.isValid(row, j, n, board) and self.DFS(n, row + 1, 0, res, board):
-                return True
+            if self.isValid(row, j, n, board):
+                self.DFS(n, row + 1, 0, res, board)
             board[row][j] = '.'
 
     def isValid(self, x, y, n, board):
