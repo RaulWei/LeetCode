@@ -3,8 +3,8 @@ __author__ = 'weimw'
 
 '''
 f[i][j]表示从0-i的s与从0-j的p是否匹配
-初态：f[0][j] f[i][0]
-终态：f[len(s)-1][len(p)-1]
+初态：f[0][0] f[0][j] f[i][0]
+终态：f[len(s)][len(p)]
 递推公式：
 if s[i]==p[j] or p[j]=='?'
     f[i][j] = f[i-1][j-1]
@@ -39,11 +39,13 @@ class Solution(object):
         if count_p > len(s):
             return False
 
+        # 初始化
         f = [[False for col in range(len(p) + 1)] for row in range(len(s) + 1)]
-
         f[0][0] = True
+        # 初始化 f[i][0]
         for i in range(1, len(s) + 1):
             f[i][0] = False
+        # 初始化 f[0][j]
         point = -1
         for j in range(1, len(p) + 1):
             if p[j - 1] != '*':
@@ -53,7 +55,7 @@ class Solution(object):
         if point != -1:
             for k in range(point, len(p) + 1):
                 f[0][k] = False
-        
+
         # 递推
         for i in range(1, len(s) + 1):
             for j in range(1, len(p) + 1):
