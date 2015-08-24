@@ -17,16 +17,21 @@ if p[j]=='*'
 # :rtype: bool
 class Solution(object):
     def isMatch(self, s, p):
+        # 特殊情况处理
         if not s:
             if not p:
                 return True
+            count = 0
             for i in range(len(p)):
                 if p[i] != '*':
-                    return False
+                    count += 1
+            if count > 0:
+                return False
             return True
         if not p:
             return False
 
+        # 剪枝
         count_p = 0
         for c in range(len(p)):
             if p[c] != '*':
@@ -34,42 +39,33 @@ class Solution(object):
         if count_p > len(s):
             return False
 
-        f = [[False for col in range(len(p))] for row in range(len(s))]
+        f = [[False for col in range(len(p) + 1)] for row in range(len(s) + 1)]
 
-        # 初始化初态f[0][j]
-        if s[0] == p[0] or p[0] == '?' or p[0] == '*':
-            f[0][0] = True
-            point = 0
-            for j in range(1, len(p)):
-                if p[j] != '*':
-                    point = j
-                    break
-                f[0][j] = True
-            if point != 0:
-                for k in range(point, len(p)):
-                    f[0][k] = False
-        else:
-            for j in range(len(p)):
-                f[0][j] = False
-        # 初始化初态f[i][0]
-        if p[0] == '*':
-            for i in range(len(s)):
-                f[i][0] = True
-        else:
-            for i in range(1, len(s)):
-                f[i][0] = False
-
+        f[0][0] = True
+        for i in range(1, len(s) + 1):
+            f[i][0] = False
+        point = -1
+        for j in range(1, len(p) + 1):
+            if p[j - 1] != '*':
+                point = j
+                break
+            f[0][j] = True
+        if point != -1:
+            for k in range(point, len(p) + 1):
+                f[0][k] = False
+        
         # 递推
-        for i in range(1, len(s)):
-            for j in range(1, len(p)):
-                if s[i] == p[j] or p[j] == '?':
+        for i in range(1, len(s) + 1):
+            for j in range(1, len(p) + 1):
+                if s[i - 1] == p[j - 1] or p[j - 1] == '?':
                     f[i][j] = f[i-1][j-1]
-                if p[j] == '*':
+                if p[j - 1] == '*':
                     f[i][j] = f[i][j-1] | f[i-1][j]
 
         # 返回终态
-        return f[len(s)-1][len(p)-1]
+        return f[len(s)][len(p)]
 
 if __name__ == '__main__':
     sol = Solution()
     print(sol.isMatch("aa", "a*"))
+    print(sol.isMatch("c", "*?*"))
