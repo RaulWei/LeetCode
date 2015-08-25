@@ -33,11 +33,14 @@ class Solution(object):
                     high.next = p
                     high = high.next
             p = p.next
+        if low is None:
+            high.next = None
+            return retMide
+        if high is None:
+            low.next = None
+            return retHead
         high.next = None
-        if retHead is None:
-            retHead = retMide
-        else:
-            low.next = retMide
+        low.next = retMide
         return retHead
 
 if __name__ == '__main__':
