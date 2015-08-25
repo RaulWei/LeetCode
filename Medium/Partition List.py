@@ -12,8 +12,11 @@ class ListNode(object):
 # :rtype: ListNode
 class Solution(object):
     def partition(self, head, x):
+        # 特殊情况考虑
         if not head:
             return None
+        
+        # 比x小的放在low链表 大于等于x的放在high链表
         p = head
         low, high = None, None
         retHead, retMide = None, None
@@ -33,6 +36,8 @@ class Solution(object):
                     high.next = p
                     high = high.next
             p = p.next
+
+        # 返回结果处理
         if low is None:
             high.next = None
             return retMide
