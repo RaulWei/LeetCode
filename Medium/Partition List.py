@@ -15,7 +15,7 @@ class Solution(object):
         # 特殊情况考虑
         if not head:
             return None
-        
+
         # 比x小的放在low链表 大于等于x的放在high链表
         p = head
         low, high = None, None
