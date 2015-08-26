@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+
 class Solution(object):
     # :type nums: List[int]
     # :rtype: int
@@ -12,6 +13,8 @@ class Solution(object):
                 max = n
         ideal_sum = (max * (max + 1)) / 2
         if ideal_sum == fact_sum:
+            if max == len(nums):
+                return 0
             return max + 1
         return ideal_sum - fact_sum
 
