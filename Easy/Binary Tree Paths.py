@@ -2,6 +2,7 @@
 __author__ = 'wang'
 
 '''
+简单的DFS 非回溯
 '''
 
 import copy
@@ -22,18 +23,14 @@ class Solution(object):
         res, tmp = [], []
         ret = []
         self.DFS(root, res, tmp)
-        for r in res:
-            s = ''
-            for num in r:
-                s += str(num) + '->'
-            ret.append(s[:-2])
+        self.processRet(res, ret)
         return ret
 
     def DFS(self, root, res, tmp):
         if not root:
             return
         if not root.left and not root.right:
-            # root是叶子节点
+            # root是叶子节点 处理返回
             tmp.append(root.val)
             res.append(copy.deepcopy(tmp))
             tmp.pop()
@@ -45,6 +42,13 @@ class Solution(object):
             self.DFS(root.right, res, tmp)
         tmp.pop()
         return
+
+    def processRet(self, res, ret):
+        for r in res:
+            s = ''
+            for num in r:
+                s += str(num) + '->'
+            ret.append(s[:-2])
 
 if __name__ == '__main__':
     p1 = TreeNode(1)
