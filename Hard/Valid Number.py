@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+有限自动机
+只要把状态转换图画对了 这题就能AC
+写法上用const和transTable简化代码 并帮助理解
+设计transTable[state][inputType]
+'''
 
 class Solution(object):
     # :type s: str
