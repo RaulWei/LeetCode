@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+本题倒是没有考察什么数据结构
+算是一道稍微复杂和麻烦点的模拟题
+'''
+
 import copy
 
 class Solution(object):
@@ -27,24 +32,15 @@ class Solution(object):
             row_str = ''
             if i == len(words):
                 # 最后一行 特殊处理
-                print("last row")
-                print(row)
                 row_str = ' '.join(row)
                 if maxWidth - len(row_str) > 0:
                     row_str += ' ' * (maxWidth - len(row_str))
-                print(row_str)
-                print(len(row_str))
             else:
                 # 普通行 计算插入空格 组成str
-                print(line_word_length)
-                mean_space, extra_space = 0, 0
                 if len(row) != 1:
                     # 该行有多个单词
                     mean_space = (maxWidth - line_word_length) / (len(row) - 1)
                     extra_space = (maxWidth - line_word_length) % (len(row) - 1)
-                    print(row)
-                    print(mean_space)
-                    print(extra_space)
                     for k in range(len(row) - 1):
                         row_str += row[k] + ' ' * mean_space
                         if k < extra_space:
@@ -53,7 +49,6 @@ class Solution(object):
                 else:
                     # 该行只有一个单词
                     row_str = row[0] + ' ' * (maxWidth - len(row[0]))
-                    # row_str += ' ' * (maxWidth - len(row_str))
 
             ret.append(copy.deepcopy(row_str))
         return ret
