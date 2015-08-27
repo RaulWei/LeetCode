@@ -39,16 +39,21 @@ class Solution(object):
                 print(line_word_length)
                 mean_space, extra_space = 0, 0
                 if len(row) != 1:
+                    # 该行有多个单词
                     mean_space = (maxWidth - line_word_length) / (len(row) - 1)
                     extra_space = (maxWidth - line_word_length) % (len(row) - 1)
-                print(row)
-                print(mean_space)
-                print(extra_space)
-                for k in range(len(row) - 1):
-                    row_str += row[k] + ' ' * mean_space
-                    if k < extra_space:
-                        row_str += ' '
-                row_str += row[-1]
+                    print(row)
+                    print(mean_space)
+                    print(extra_space)
+                    for k in range(len(row) - 1):
+                        row_str += row[k] + ' ' * mean_space
+                        if k < extra_space:
+                            row_str += ' '
+                    row_str += row[-1]
+                else:
+                    # 该行只有一个单词
+                    row_str = row[0] + ' ' * (maxWidth - len(row[0]))
+                    # row_str += ' ' * (maxWidth - len(row_str))
 
             ret.append(copy.deepcopy(row_str))
         return ret
