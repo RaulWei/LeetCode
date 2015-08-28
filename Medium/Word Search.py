@@ -6,11 +6,11 @@ class Solution(object):
     # :type word: str
     # :rtype: bool
     def exist(self, board, word):
-        for i in range(len(board)):
-            if len(board) == 1:
-                board[i] = list(board[i])
-            else:
-                board[i] = list(board[i][0])
+        # for i in range(len(board)):
+        #     if len(board) == 1:
+        #         board[i] = list(board[i])
+        #     else:
+        #         board[i] = list(board[i][0])
         walked = [[0 for col in range(len(board[0]))] for row in range(len(board))]
 
         for i in range(len(board)):
@@ -37,7 +37,8 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.exist(["ab", "cd"], "acdb"))
     print(sol.exist(["aa"], "aa"))
-    print(sol.exist([["ABCE"], ["SFCS"], ["ADEE"]], "ABCB"))
-    print(sol.exist([["ABCE"], ["SFCS"], ["ADEE"]], "ABCCED"))
-    print(sol.exist([["ABCE"], ["SFCS"], ["ADEE"]], "SEE"))
+    print(sol.exist(["ABCE", "SFCS", "ADEE"], "ABCB"))
+    print(sol.exist(["ABCE", "SFCS", "ADEE"], "ABCCED"))
+    print(sol.exist(["ABCE", "SFCS", "ADEE"], "SEE"))
