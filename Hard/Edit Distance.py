@@ -6,7 +6,8 @@ f[i][j]表示word1前i个组成的字符串变化到word2前j个组成的字符�
 初态：
 终态：f[len(word1)][len(word2)]
 递推公式：
-
+当word1[i - 1] == word2[j - 1]时 替换最后一个字符即可
+当word1[i - 1] != word2[j - 1]时 分类讨论 取三类中最小
 '''
 
 class Solution(object):
