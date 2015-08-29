@@ -20,7 +20,8 @@ class Solution(object):
         for ch in t:
             t_num[ord(ch)] += 1
 
-        for i in range(len(s)):
+        i = 0
+        while i < len(s):
             # 先找到包含所有t字符的大窗口
             while i < len(s) and found_num < len(t):
                 if window_num[ord(s[i])] < t_num[ord(s[i])]:
@@ -41,11 +42,11 @@ class Solution(object):
                 if min_len > min_right - min_left + 1:
                     min_len = min_right - min_left + 1
                     min_index = min_left
-                window_num[ord(s[left])] -= 1
+                window_num[ord(s[min_left])] -= 1
                 found_num -= 1
-                left += 1
+                left = min_left + 1
         if is_found:
-            return s[min_index:min_len]
+            return s[min_index:min_index + min_len]
         return ''
 
 if __name__ == '__main__':
