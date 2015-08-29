@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+one-pass 维持一个red索引指针和blue索引指针
+两边向中间遍历 但是其中细节要注意否则非常容易错
+特别是idx的移动要注意 更新red后移动 更新blue后不移动
+'''
+
 class Solution(object):
     # :type nums: List[int]
     # :rtype: void Do not return anything, modify nums in-place instead.
