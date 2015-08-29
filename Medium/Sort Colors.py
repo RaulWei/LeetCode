@@ -12,13 +12,13 @@ class Solution(object):
                 nums[idx], nums[red_idx] = nums[red_idx], nums[idx]
                 red_idx += 1
                 idx += 1
-            if nums[idx] == 2:  # blue
+            elif nums[idx] == 2:  # blue
                 nums[idx], nums[blue_idx] = nums[blue_idx], nums[idx]
                 blue_idx -= 1
-            if nums[idx] == 1:  # white
+            elif nums[idx] == 1:  # white
                 idx += 1
-        return nums
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.sortColors([0]))
     print(sol.sortColors([1, 2, 0, 1, 0, 0]))
