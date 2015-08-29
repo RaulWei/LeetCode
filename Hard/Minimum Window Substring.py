@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+滑动窗口法 细节很难处理
+'''
+
 class Solution(object):
     # :type s: str
     # :type t: str
