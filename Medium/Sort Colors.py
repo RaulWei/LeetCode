@@ -11,11 +11,12 @@ class Solution(object):
             if nums[idx] == 0:  # red
                 nums[idx], nums[red_idx] = nums[red_idx], nums[idx]
                 red_idx += 1
+                idx += 1
             if nums[idx] == 2:  # blue
                 nums[idx], nums[blue_idx] = nums[blue_idx], nums[idx]
                 blue_idx -= 1
-            # if nums[idx] == 1:  # white
-            idx += 1    # white or handled red/blue
+            if nums[idx] == 1:  # white
+                idx += 1
         return nums
 
 if __name__ == '__main__':
