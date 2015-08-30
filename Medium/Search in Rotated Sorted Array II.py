@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+还是可以用二分法
+只不过二分法的判断条件这里要灵活变动
+'''
+
 class Solution(object):
     # :type nums: List[int]
     # :type target: int
@@ -19,7 +24,7 @@ class Solution(object):
                     high = mid - 1
                 else:
                     low = mid + 1
-            elif nums[low] > nums[mid]:    # 右半边排好序
+            elif nums[low] > nums[mid]:    # 右半边排好序 这里判断右边排好序用的是nums[low]和nums[mid] 不能用nums[mid]和nums[high]
                 if nums[mid] < target <= nums[high]:
                     low = mid + 1
                 else:
