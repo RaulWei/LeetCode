@@ -14,14 +14,23 @@ class Solution(object):
             if target == nums[mid]:
                 return True
             # 以下的判断中target都不等于mid
-            if nums[low] <= nums[mid]:
-                if nums[low] <= target <= nums[mid]:
+            if nums[low] < nums[mid]:   # 左半边排好序
+                if nums[low] <= target < nums[mid]:
                     high = mid - 1
                 else:
                     low = mid + 1
+            elif nums[low] > nums[mid]:    # 右半边排好序
+                if nums[mid] < target <= nums[high]:
+                    low = mid + 1
+                else:
+                    high = mid - 1
             else:
-                if nums[mid] <= target <= nums[high]:
-                    low = mid + 1
-                else:
-                    high = mid - 1
+                # 实际上这里nums[left] == nums[mid] 但是已经排除target == nums[mid]
+                # 所以target肯定也不等于nums[left] 可以把这个略过去
+                low += 1
         return False
+
+if __name__ == '__main__':
+    sol = Solution()
+    print(sol.search([5, 1, 1, 1, 1, 1], 5))
+    print(sol.search([1, 3, 1, 1, 1], 3))
