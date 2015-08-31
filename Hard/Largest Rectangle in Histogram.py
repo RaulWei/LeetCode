@@ -9,7 +9,7 @@ class Solution(object):
         left_area, right_area, max_area = 0, 0, 0
         i, stack = 0, []
         while i < len(height):
-            while stack and height[i] < stack[-1]:
+            while stack and height[i] < height[stack[-1]]:
                 tmp = stack.pop()
                 left_area = height[tmp] * (tmp + 1 if not stack else tmp - stack[-1])
                 right_area = height[tmp] * (i - tmp - 1)
