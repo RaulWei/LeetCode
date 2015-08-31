@@ -5,20 +5,18 @@ class Solution(object):
     # :type height: List[int]
     # :rtype: int
     def largestRectangleArea(self, height):
-        max_area = 0
-        for i in range(len(height)):
-            # 找最左
-            left = i
-            while left > 0 and height[left - 1] >= height[i]:
-                left -= 1
-            # 找最右
-            right = i
-            while right < len(height) - 1 and height[right + 1] >= height[i]:
-                right += 1
-            # 算面积 更新max
-            area = (right - left + 1) * height[i]
-            if area > max_area:
-                max_area = area
+        height.append(0)
+        left_area, right_area, max_area = 0, 0, 0
+        i, stack = 0, []
+        while i < len(height):
+            while stack and height[i] < stack[-1]:
+                tmp = stack.pop()
+                left_area = height[tmp] * (tmp + 1 if not stack else tmp - stack[-1])
+                right_area = height[tmp] * (i - tmp - 1)
+                area = left_area + right_area
+                max_area = area if area > max_area else max_area
+            stack.append(i)
+            i += 1
         return max_area
 
 if __name__ == '__main__':
