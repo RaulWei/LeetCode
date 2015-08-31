@@ -13,7 +13,7 @@ class Solution(object):
     def maximalRectangle(self, matrix):
         max_area = 0
         for row in range(len(matrix)):
-            matrix[row].append(-1)
+            matrix[row] += '#'
             left_area, right_area = 0, 0
             i, stack = 0, []
             while i < len(matrix[row]):
@@ -28,10 +28,10 @@ class Solution(object):
         return max_area
 
     def height(self, matrix, row, col):
-        if matrix[row][col] == -1:
+        if matrix[row][col] == '#':
             return 0
         height = 0
-        while row >= 0 and matrix[row][col] == 1:
+        while row >= 0 and matrix[row][col] == '1':
             height += 1
             row -= 1
         return height
@@ -39,4 +39,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.maximalRectangle([["111"], ["111"]]))
+    print(sol.maximalRectangle(["1"]))
+    print(sol.maximalRectangle(["111", "111"]))
