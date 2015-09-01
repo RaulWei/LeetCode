@@ -4,6 +4,7 @@ __author__ = 'weimw'
 '''
 Subsets是对某个元素 选 or 不选 的问题
 本题对于重复元素是 不选 or 选一次 or ... or 选n次 的问题
+给每个元素配置一个count变量表针它的可选次数
 '''
 
 import copy
@@ -16,13 +17,13 @@ class Solution(object):
             res.append(res_t_cp)
             return
 
-        # 计算元素重复几次
+        # 计算元素重复几次 注意递归时step的增加
         idx, count = step, 1
         while idx < len(nums) - 1 and nums[idx] == nums[idx + 1]:
             count += 1
             idx += 1
 
-        for n in range(count + 1):  # 选的次数
+        for n in range(count + 1):  # 选的次数 0,1,2,3...count
             for k in range(n):
                 res_t.append(nums[step])
             self.backtracking(step + count, nums, res_t, res)
