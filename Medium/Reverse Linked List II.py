@@ -13,7 +13,7 @@ class Solution(object):
     # :type n: int
     # :rtype: ListNode
     def reverseBetween(self, head, m, n):
-        fst_lk_tail, i = head, 0
+        fst_lk_tail, i = head, 1
         while i < m - 1:
             fst_lk_tail = fst_lk_tail.next
             i += 1
@@ -24,12 +24,13 @@ class Solution(object):
             i += 1
 
         # 开始翻转
-        for i in range(n - m):
+        for i in range(0, n - m + 1):
             next = rvs_lk_head.next
             rvs_lk_head.next = rvs_lk_pre
             rvs_lk_pre = rvs_lk_head
             rvs_lk_head = next
-        fst_lk_tail.next = rvs_lk_head
+        fst_lk_tail.next = rvs_lk_pre
+        return head
 
 if __name__ == "__main__":
     sol = Solution()
