@@ -2,7 +2,9 @@
 __author__ = 'wang'
 
 '''
-代码细节处理不好 边界一直过不了
+基本上算是模拟题 但往往leetcode上的模拟题我实现起来兼容边界条件比较费劲
+把整条链表分为三段 第一段和第三段是正常顺序 第二段需要翻转
+写代码时要充分考虑兼容第一段和第三段为空的情况
 '''
 
 # Definition for singly-linked list.
@@ -20,12 +22,13 @@ class Solution(object):
         if not head:
             return head
 
+        # 找到第一段的段尾 可能是空 可能是某个节点
         fst_lk_tail, p, i = None, head, 0
         while i < m - 1:
             fst_lk_tail = p
             p = p.next
             i += 1
-
+        # 找到第三段的段头 它将作为翻转段的段尾的下一个
         rvs_lk_head, rvs_lk_pre = p, p
         while i < n:
             rvs_lk_pre = rvs_lk_pre.next
@@ -33,11 +36,13 @@ class Solution(object):
 
         # 开始翻转
         for i in range(n - m + 1):
-            if rvs_lk_head:
-                next = rvs_lk_head.next
-                rvs_lk_head.next = rvs_lk_pre
-                rvs_lk_pre = rvs_lk_head
-                rvs_lk_head = next
+            next = rvs_lk_head.next
+            rvs_lk_head.next = rvs_lk_pre
+            rvs_lk_pre = rvs_lk_head
+            rvs_lk_head = next
+
+        # 如果有第一段 则把第一段段尾连上翻转段段头 返回head
+        # 如果没有第一段 则直接返回翻转段段头
         if fst_lk_tail:
             fst_lk_tail.next = rvs_lk_pre
         else:
