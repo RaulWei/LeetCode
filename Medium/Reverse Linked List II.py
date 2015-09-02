@@ -17,12 +17,16 @@ class Solution(object):
     # :type n: int
     # :rtype: ListNode
     def reverseBetween(self, head, m, n):
-        fst_lk_tail, i = head, 1
+        if not head:
+            return head
+
+        fst_lk_tail, p, i = None, head, 0
         while i < m - 1:
-            fst_lk_tail = fst_lk_tail.next
+            fst_lk_tail = p
+            p = p.next
             i += 1
 
-        rvs_lk_head, rvs_lk_pre = fst_lk_tail.next, fst_lk_tail.next
+        rvs_lk_head, rvs_lk_pre = p, p
         while i < n:
             rvs_lk_pre = rvs_lk_pre.next
             i += 1
@@ -34,7 +38,10 @@ class Solution(object):
                 rvs_lk_head.next = rvs_lk_pre
                 rvs_lk_pre = rvs_lk_head
                 rvs_lk_head = next
-        fst_lk_tail.next = rvs_lk_pre
+        if fst_lk_tail:
+            fst_lk_tail.next = rvs_lk_pre
+        else:
+            head = rvs_lk_pre
         return head
 
 if __name__ == "__main__":
@@ -44,8 +51,8 @@ if __name__ == "__main__":
     p3 = ListNode(3)
     p4 = ListNode(4)
     p5 = ListNode(5)
-    # p1.next = p2
-    # p2.next = p3
-    # p3.next = p4
-    # p4.next = p5
+    p1.next = p2
+    p2.next = p3
+    p3.next = p4
+    p4.next = p5
     sol.reverseBetween(p1, 1, 1)
