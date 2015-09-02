@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+递归比较好理解
+当然要剪枝
+'''
+
 class Solution(object):
     # :type s1: str
     # :type s2: str
