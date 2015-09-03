@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+比较普通的回溯法处理 先放置后验证 循环递归
+循环条件比较重要 好好理解 这块剪枝不少
+'''
+
 class Solution(object):
     # :type s: str
     # :rtype: List[str]
