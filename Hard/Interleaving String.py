@@ -17,23 +17,23 @@ class Solution(object):
         if step == len(s3):
             return True
 
-        print(idx_1)
-        print(idx_2)
-        print(s3[:len(s) + 1])
+        # print(idx_1)
+        # print(idx_2)
+        # print(s3[:len(s) + 1])
 
         # check s1
         if idx_1 < len(s1) and s + s1[idx_1] == s3[:len(s) + 1]:
             s += s1[idx_1]
             if flag[idx_1][idx_2] == 1 and self.DFS(step + 1, s1, idx_1 + 1, s2, idx_2, s3, s, flag):
                 return True
-            s = s.rstrip(s1[idx_1])
+            s = s[:-1]
             flag[idx_1 + 1][idx_2] = 0
         # check s2
         if idx_2 < len(s2) and s + s2[idx_2] == s3[:len(s) + 1]:
             s += s2[idx_2]
             if flag[idx_1][idx_2] == 1 and self.DFS(step + 1, s1, idx_1, s2, idx_2 + 1, s3, s, flag):
                 return True
-            s = s.rstrip(s2[idx_2])
+            s = s[:-1]
             flag[idx_1][idx_2 + 1] = 0
 
         return False
@@ -41,7 +41,7 @@ class Solution(object):
 if __name__ == "__main__":
     sol = Solution()
     print(sol.isInterleave("aabd", "abdc", "aabdabcd"))
-    # print(sol.isInterleave("a", "a", "aa"))
-    # print(sol.isInterleave("aabcc", "dbbca", "aadbbcbcac"))
-    # print(sol.isInterleave("aabcc", "dbbca", "aadbbbaccc"))
-    # print(sol.isInterleave("bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa", "babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab", "babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab"))
+    print(sol.isInterleave("a", "a", "aa"))
+    print(sol.isInterleave("aabcc", "dbbca", "aadbbcbcac"))
+    print(sol.isInterleave("aabcc", "dbbca", "aadbbbaccc"))
+    print(sol.isInterleave("bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa", "babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab", "babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab"))
