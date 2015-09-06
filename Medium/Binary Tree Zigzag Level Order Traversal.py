@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+这题和Binary Tree Level Order Traversal差不多
+只不过在最后把res中奇数的子list做一个反转即可
+'''
+
 from collections import deque
 
 # Definition for a binary tree node.
