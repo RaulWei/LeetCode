@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+利用一个性质 BST的中序遍历应该为有序序列
+如何找错误的两节点 如序列 6 3 4 5 2
+第一个错误节点为降序两点的前者 第二个错误节点为降序两点的后者
+'''
+
 import sys
 
 # Definition for a binary tree node.
@@ -14,31 +20,23 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: void Do not return anything, modify root in-place instead.
     def recoverTree(self, root):
-        res, count = [], 0
-        self.recvTree(root, -1 * sys.maxint - 1, sys.maxint, res, root)
-        return root
+        fst_wr_point, scd_wr_point = None, None
+        pre = TreeNode(-1 * sys.maxint - 1)
+        self.in_order_recvTree()
 
-    def recvTree(self, root, left_val, right_val, res, r):
+        # 交换两节点的值
+        tmp = fst_wr_point.val
+        fst_wr_point.val = scd_wr_point.val
+        scd_wr_point.val = tmp
+
+    def in_order_recvTree(self, root, pre):
         if not root:
             return
-        if left_val >= root.val or root.val >= right_val:
-            res.append(root)
-            if len(res) == 2:
-                tmp = res[0].val
-                res[0].val = res[1].val
-                res[1].val = tmp
-                return
-        self.recvTree(root.left, left_val, root.val, res, r)
-        self.recvTree(root.right, root.val, right_val, res, r)
-        if len(res) == 1:
-            tmp = r.val
-            r.val = res[0].val
-            res[0].val = tmp
 
-    def swap(self, p1, p2):
-        tmp = p1.val
-        p1.val = p2.val
-        p2.val = tmp
+        self.in_order_recvTree(root.left, pre)
+        # do
+        self.in_order_recvTree(root.right, pre)
+
 
 
 if __name__ == '__main__':
@@ -62,7 +60,6 @@ if __name__ == '__main__':
     p13 = TreeNode(-1)
     p11.left = p12
     p11.right = p13
-    sol.swap(p12,p13)
     print(p12.val)
     print(p13.val)
     sol.recoverTree(p1)
