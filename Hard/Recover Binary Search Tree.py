@@ -14,23 +14,31 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: void Do not return anything, modify root in-place instead.
     def recoverTree(self, root):
-        res = []
-        self.recvTree(root, -1 * sys.maxint - 1, sys.maxint, res, 0)
+        res, count = [], 0
+        self.recvTree(root, -1 * sys.maxint - 1, sys.maxint, res, root)
         return root
 
-    def recvTree(self, root, left_val, right_val, res, count):
+    def recvTree(self, root, left_val, right_val, res, r):
         if not root:
             return
         if left_val >= root.val or root.val >= right_val:
             res.append(root)
-            count += 1
-            if count == 2:
+            if len(res) == 2:
                 tmp = res[0].val
                 res[0].val = res[1].val
                 res[1].val = tmp
                 return
-        self.recvTree(root.left, left_val, root.val, res, count)
-        self.recvTree(root.right, root.val, right_val, res, count)
+        self.recvTree(root.left, left_val, root.val, res, r)
+        self.recvTree(root.right, root.val, right_val, res, r)
+        if len(res) == 1:
+            tmp = r.val
+            r.val = res[0].val
+            res[0].val = tmp
+
+    def swap(self, p1, p2):
+        tmp = p1.val
+        p1.val = p2.val
+        p2.val = tmp
 
 
 if __name__ == '__main__':
@@ -48,4 +56,13 @@ if __name__ == '__main__':
     p2.right = p5
     p3.left = p6
     p3.right = p7
+
+    p11 = TreeNode(0)
+    p12 = TreeNode(1)
+    p13 = TreeNode(-1)
+    p11.left = p12
+    p11.right = p13
+    sol.swap(p12,p13)
+    print(p12.val)
+    print(p13.val)
     sol.recoverTree(p1)
