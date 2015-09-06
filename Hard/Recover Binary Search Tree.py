@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+import sys
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
@@ -12,11 +14,24 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: void Do not return anything, modify root in-place instead.
     def recoverTree(self, root):
+        res = []
+        self.recvTree(root, -1 * sys.maxint - 1, sys.maxint, res, 0)
+        return root
 
-    def recvTree(self, root, left_val, right_val):
+    def recvTree(self, root, left_val, right_val, res, count):
         if not root:
             return
-        if left_val < root.val < right_val and 
+        if left_val >= root.val or root.val >= right_val:
+            res.append(root)
+            count += 1
+            if count == 2:
+                tmp = res[0].val
+                res[0].val = res[1].val
+                res[1].val = tmp
+                return
+        self.recvTree(root.left, left_val, root.val, res, count)
+        self.recvTree(root.right, root.val, right_val, res, count)
+
 
 if __name__ == '__main__':
     sol = Solution()
