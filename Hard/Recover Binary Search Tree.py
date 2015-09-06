@@ -27,8 +27,11 @@ class Solution(object):
         # 交换两节点的值
         self.fst_wr_point.val, self.scd_wr_point.val = self.scd_wr_point.val, self.fst_wr_point.val
 
-        return
-
+    '''
+    修改中序遍历实现
+    注意pre的更新 pre初始化为一个最小值 每次更新为root
+    注意递归传参堆栈弹出时会清空参数的赋值 所以这里我们采用self.变量作为全局来避免传参会遇到的问题
+    '''
     def in_order_recvTree(self, root):
         if not root:
             return
@@ -59,12 +62,4 @@ if __name__ == '__main__':
     p2.right = p5
     p3.left = p6
     p3.right = p7
-
-    p11 = TreeNode(0)
-    p12 = TreeNode(1)
-    p13 = TreeNode(-1)
-    p11.left = p12
-    p11.right = p13
-    print(p12.val)
-    print(p13.val)
     sol.recoverTree(p1)
