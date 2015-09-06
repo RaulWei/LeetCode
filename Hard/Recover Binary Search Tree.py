@@ -20,23 +20,28 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: void Do not return anything, modify root in-place instead.
     def recoverTree(self, root):
-        fst_wr_point, scd_wr_point = None, None
-        pre = TreeNode(-1 * sys.maxint - 1)
-        self.in_order_recvTree()
+        self.fst_wr_point, self.scd_wr_point = None, None
+        self.pre = TreeNode(-1 * sys.maxint - 1)
+        self.in_order_recvTree(root)
 
         # 交换两节点的值
-        tmp = fst_wr_point.val
-        fst_wr_point.val = scd_wr_point.val
-        scd_wr_point.val = tmp
+        self.fst_wr_point.val, self.scd_wr_point.val = self.scd_wr_point.val, self.fst_wr_point.val
 
-    def in_order_recvTree(self, root, pre):
+        return
+
+    def in_order_recvTree(self, root):
         if not root:
             return
 
-        self.in_order_recvTree(root.left, pre)
-        # do
-        self.in_order_recvTree(root.right, pre)
+        self.in_order_recvTree(root.left)
 
+        if not self.fst_wr_point and self.pre.val >= root.val:
+            self.fst_wr_point = self.pre
+        if self.fst_wr_point and self.pre.val >= root.val:
+            self.scd_wr_point = root
+
+        self.pre = root
+        self.in_order_recvTree(root.right)
 
 
 if __name__ == '__main__':
