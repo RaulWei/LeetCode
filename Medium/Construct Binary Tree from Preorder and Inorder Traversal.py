@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+第一次碰到MLE 内存超过限制了
+通过Discuss上了解到是切片做多了 为了减少切片我把preorder改为动态出栈而不是每次取它的第一个 递归时找“第一个”的位置
+动态出栈后递归时就不用对preorder做切片 如下代码所示
+'''
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
@@ -18,8 +24,8 @@ class Solution(object):
         root_value = preorder.pop(0)
         root = TreeNode(root_value)
         i = inorder.index(root_value)
-        root.left = self.buildTree(preorder, inorder[0:i])
-        root.right = self.buildTree(preorder, inorder[i+1:])
+        root.left = self.buildTree(preorder, inorder[0:i])  # 构建左子树 返回左子树root
+        root.right = self.buildTree(preorder, inorder[i+1:])    # 构建右子树 返回右子树root
         return root
 
 if __name__ == '__main__':
