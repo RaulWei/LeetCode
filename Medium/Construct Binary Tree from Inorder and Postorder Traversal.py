@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+模仿上一题由前序和中序构造二叉树 本题由中序和后序构造二叉树
+思路和上题一致 注意一下在递归构造时先构造右子树再构造左子树即可
+'''
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
