@@ -13,13 +13,13 @@ class Solution(object):
     # :type inorder: List[int]
     # :rtype: TreeNode
     def buildTree(self, preorder, inorder):
-        if len(preorder) == 0:
+        if not len(preorder) or not len(inorder):
             return None
-        root, i = TreeNode(preorder[0]), 0
-        while i < len(inorder) and inorder[i] != preorder[0]:
-            i += 1
-        root.left = self.buildTree(preorder[1:1+i], inorder[0:i])
-        root.right = self.buildTree(preorder[1+i:], inorder[i+1:])
+        root_value = preorder.pop(0)
+        root = TreeNode(root_value)
+        i = inorder.index(root_value)
+        root.left = self.buildTree(preorder, inorder[0:i])
+        root.right = self.buildTree(preorder, inorder[i+1:])
         return root
 
 if __name__ == '__main__':
