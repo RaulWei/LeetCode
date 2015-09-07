@@ -21,9 +21,11 @@ class Solution(object):
     def buildTree(self, preorder, inorder):
         if not len(preorder) or not len(inorder):
             return None
+        # 前序遍历的第一个节点一定是根节点
         root_value = preorder.pop(0)
         root = TreeNode(root_value)
         i = inorder.index(root_value)
+        # 递归构造左子树和右子树
         root.left = self.buildTree(preorder, inorder[0:i])  # 构建左子树 返回左子树root
         root.right = self.buildTree(preorder, inorder[i+1:])    # 构建右子树 返回右子树root
         return root
