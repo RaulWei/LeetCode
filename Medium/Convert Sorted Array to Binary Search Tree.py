@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+将一个递增序列转化为BST
+很简单 取序列中间的一个为root
+递归序列左边的为左子树 递归序列右边的为右子树
+'''
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
