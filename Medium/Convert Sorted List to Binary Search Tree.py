@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+将一个递增链表转化为BST
+和递增序列的想法是一样的 只不过细节过考虑一下即可
+'''
+
 # Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, x):
@@ -52,4 +57,3 @@ if __name__ == '__main__':
     p6.next = p7
     sol = Solution()
     root = sol.sortedListToBST(p1)
-    pass
