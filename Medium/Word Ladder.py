@@ -9,6 +9,16 @@ class Solution(object):
     def ladderLength(self, beginWord, endWord, wordDict):
         pass
 
+    def isOneChDiff(self, word1, word2):
+        if len(word1) != len(word2):
+            return False
+        count = 0
+        for i in range(len(word1)):
+            if word1[i] != word2[i]:
+                count += 1
+        if count == 1:
+            return True
+        return False
 
 if __name__ == '__main__':
     sol = Solution()
