@@ -25,21 +25,20 @@ class Solution(object):
             for i in range(num):
                 word = toVisit.pop(0)
                 if word == endWord:
+                    # 遇到endWord可以返回
                     return dist
-                # self.addNextWords(word, wordDict, toVisit)
-
-                # addNextWords
+                # 添加word节点的下一层
                 for i in range(len(word)):
                     letter = word[i]
                     for c in 'abcdefghijklmnopqrstuvwxyz':
                         word = word[:i] + c + word[i + 1:]
                         if word == endWord:
+                            # 剪枝 虽然不在队头 但可以知道已经找到endWord 可以立即返回dist+1
                             return dist + 1
                         if word in wordDict and word not in visited:
                             toVisit.append(word)
                             visited.add(word)
                     word = word[:i] + letter + word[i + 1:]
-
             dist += 1
         return 0
 
