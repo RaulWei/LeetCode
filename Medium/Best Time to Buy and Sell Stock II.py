@@ -1,5 +1,9 @@
 # -*- coding: UTF-8 -*-
 
+'''
+只能是买-卖-买-卖这样 不能有买-买-卖-卖这样的情况
+'''
+
 class Solution(object):
     # :type prices: List[int]
     # :rtype: int
