@@ -7,6 +7,9 @@ f[k, i]表示从prices[0]到prices[i]经过k次transactions所能够获得的最
 终态：max(f[k, i])
 递推公式：
 f[k, i] = max(f[k, i - 1], prices[i] - prices[j] + f[k - 1, j]) 0 < j < i
+
+为什么是 prices[i] - prices[j] + f[k-1,j]
+这里的f[k-1,j]中的j我们如果不取 那么就是0-j-1 j-i两段； 如果取 那么其实就是0-i中取某一段 也是符合的
 '''
 
 class Solution(object):
