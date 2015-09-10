@@ -11,6 +11,7 @@ f[k, i] = max(f[k, i - 1], prices[i] - prices[j] + f[k - 1, j]) 0 <= j < i
 
 为什么是 prices[i] - prices[j] + f[k-1,j]
 这里的f[k-1,j]中的j我们如果不取 那么就是0-j-1 j-i两段； 如果取 那么其实就是0-i中取某一段 也是符合的
+j的取值是[0,i) 没必要再来个循环求max(f[k - 1, j] - prices[j]) 这样会TLE 直接合在i的这层循环中做 两重循环不超时
 '''
 
 class Solution(object):
@@ -19,7 +20,7 @@ class Solution(object):
     def maxProfit(self, prices):
         if not prices:
             return 0
-        
+
         K, max_prof = 2, 0
         f = [[0 for col in range(len(prices))] for row in range(K + 1)]
 
