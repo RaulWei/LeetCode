@@ -49,13 +49,15 @@ class Solution(object):
             for dc in direction:
                 update_row, update_col = cur_row + dc[0], cur_col + dc[1]
                 if 0 <= update_row < row_n and 0 <= update_col < col_n and board[update_row][update_col] == 'O':
+                    board[update_row] = ''.join(board[update_row][:update_col]) + 'T' + ''.join(board[update_row][update_col + 1:])
                     queue.append([update_row, update_col])
 
 
 if __name__ == '__main__':
     sol = Solution()
+    sol.solve(["XOOOOOOOOOOOOOOOOOOO","OXOOOOXOOOOOOOOOOOXX","OOOOOOOOXOOOOOOOOOOX","OOXOOOOOOOOOOOOOOOXO","OOOOOXOOOOXOOOOOXOOX","XOOOXOOOOOXOXOXOXOXO","OOOOXOOXOOOOOXOOXOOO","XOOOXXXOXOOOOXXOXOOO","OOOOOXXXXOOOOXOOXOOO","XOOOOXOOOOOOXXOOXOOX","OOOOOOOOOOXOOXOOOXOX","OOOOXOXOOXXOOOOOXOOO","XXOOOOOXOOOOOOOOOOOO","OXOXOOOXOXOOOXOXOXOO","OOXOOOOOOOXOOOOOXOXO","XXOOOOOOOOXOXXOOOXOO","OOXOOOOOOOXOOXOXOXOO","OOOXOOOOOXXXOOXOOOXO","OOOOOOOOOOOOOOOOOOOO","XOOOOXOOOXXOOXOXOXOO"])
     sol.solve(["XOX", "OXO", "XOX"])
-    # print(sol.solve(["O"]))
-    # print(sol.solve(["OOO", "OOO", "OOO"]))
-    # print(sol.solve(["X"]))
-    # print(sol.solve(["XXXX", "XOOX", "XXOX", "XOXX"]))
+    print(sol.solve(["O"]))
+    print(sol.solve(["OOO", "OOO", "OOO"]))
+    print(sol.solve(["X"]))
+    print(sol.solve(["XXXX", "XOOX", "XXOX", "XOXX"]))
