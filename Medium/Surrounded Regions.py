@@ -11,31 +11,50 @@ class Solution(object):
     # :type board: List[List[str]]
     # :rtype: void Do not return anything, modify board in-place instead.
     def solve(self, board):
-        row, col = len(board), len(board[0])
+        if not board:
+            return
+        row_n, col_n = len(board), len(board[0])
         # 边界：第一行 和 最后一行
-        for j in range(col):
+        for j in range(col_n):
             if board[0][j] == 'O':
-                self.bfsMark(board, 0, j)
-            if board[row - 1][j] == 'O':
-                self.bfsMark(board, row - 1, j)
+                self.bfsMark(board, 0, j, row_n, col_n)
+            if board[row_n - 1][j] == 'O':
+                self.bfsMark(board, row_n - 1, j, row_n, col_n)
         # 边界：最左列 和 最右列
-        for i in range(row):
-            if board[row][0] == 'O':
-                self.bfsMark(board, row, 0)
-            if board[row][col - 1] == 'O':
-                self.bfsMark(board, row, col - 1)
+        for i in range(row_n):
+            if board[i][0] == 'O':
+                self.bfsMark(board, row_n, 0, row_n, col_n)
+            if board[i][col_n - 1] == 'O':
+                self.bfsMark(board, row_n, col_n - 1, row_n, col_n)
         # 遍历board
-        for i in range(row):
-            for j in range(col):
+        for i in range(row_n):
+            for j in range(col_n):
                 if board[i][j] == 'O':
-                    board[i][j] = 'X'
+                    board[i] = board[i][:j] + 'X' + board[i][j + 1:]
+                    # board[i][j] = 'X'
                 if board[i][j] == 'T':
-                    board[i][j] = 'O'
+                    board[i] = board[i][:j] + 'O' + board[i][j + 1:]
+                    # board[i][j] = 'O'
+        return
 
-    def bfsMark(self, board, row, col):
-        
+
+    def bfsMark(self, board, row, col, row_n, col_n):
+        direction = [[-1, 0], [1, 0], [0, -1], [0, 1]]  # 上 下 左 右
+        queue = [[row, col]]
+        while queue:
+            cur_row, cur_col = queue[0][0], queue[0][1]
+            queue.pop(0)
+            board[cur_row] = board[cur_row][:cur_col] + 'T' + board[cur_row][cur_col + 1:]
+            # board[cur_row][cur_col] = 'T'
+            for dc in direction:
+                update_row, update_col = cur_row + dc[0], cur_col + dc[1]
+                if 0 <= update_row < row_n and 0 <= update_col < col_n and board[update_row][update_col] == 'O':
+                    queue.append([update_row, update_col])
 
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.solve(["O"]))
+    print(sol.solve(["OOO", "OOO", "OOO"]))
+    print(sol.solve(["X"]))
     print(sol.solve(["XXXX", "XOOX", "XXOX", "XOXX"]))
