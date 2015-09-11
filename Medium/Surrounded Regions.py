@@ -46,6 +46,7 @@ class Solution(object):
             for dc in direction:
                 update_row, update_col = cur_row + dc[0], cur_col + dc[1]
                 if 0 <= update_row < row_n and 0 <= update_col < col_n and board[update_row][update_col] == 'O':
+                    # 加入队列的时候要做标记 否则容易被重复加入队列造成死循环
                     board[update_row] = ''.join(board[update_row][:update_col]) + 'T' + ''.join(board[update_row][update_col + 1:])
                     queue.append([update_row, update_col])
 
