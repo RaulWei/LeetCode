@@ -34,7 +34,6 @@ class Solution(object):
                 if board[i][j] == 'T':
                     board[i] = ''.join(board[i][:j]) + 'O' + ''.join(board[i][j + 1:])
 
-
     def bfsMark(self, board, row, col, row_n, col_n):
         direction = [[-1, 0], [1, 0], [0, -1], [0, 1]]  # 上 下 左 右
         queue = [[row, col]]
