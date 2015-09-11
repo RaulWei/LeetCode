@@ -23,9 +23,9 @@ class Solution(object):
         # 边界：最左列 和 最右列
         for i in range(row_n):
             if board[i][0] == 'O':
-                self.bfsMark(board, row_n, 0, row_n, col_n)
+                self.bfsMark(board, i, 0, row_n, col_n)
             if board[i][col_n - 1] == 'O':
-                self.bfsMark(board, row_n, col_n - 1, row_n, col_n)
+                self.bfsMark(board, i, col_n - 1, row_n, col_n)
         # 遍历board
         for i in range(row_n):
             for j in range(col_n):
