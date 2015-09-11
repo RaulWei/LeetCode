@@ -30,10 +30,10 @@ class Solution(object):
         for i in range(row_n):
             for j in range(col_n):
                 if board[i][j] == 'O':
-                    board[i] = board[i][:j] + 'X' + board[i][j + 1:]
+                    board[i] = ''.join(board[i][:j]) + 'X' + ''.join(board[i][j + 1:])
                     # board[i][j] = 'X'
                 if board[i][j] == 'T':
-                    board[i] = board[i][:j] + 'O' + board[i][j + 1:]
+                    board[i] = ''.join(board[i][:j]) + 'O' + ''.join(board[i][j + 1:])
                     # board[i][j] = 'O'
         return
 
@@ -44,7 +44,7 @@ class Solution(object):
         while queue:
             cur_row, cur_col = queue[0][0], queue[0][1]
             queue.pop(0)
-            board[cur_row] = board[cur_row][:cur_col] + 'T' + board[cur_row][cur_col + 1:]
+            board[cur_row] = ''.join(board[cur_row][:cur_col]) + 'T' + ''.join(board[cur_row][cur_col + 1:])
             # board[cur_row][cur_col] = 'T'
             for dc in direction:
                 update_row, update_col = cur_row + dc[0], cur_col + dc[1]
@@ -54,7 +54,8 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.solve(["O"]))
-    print(sol.solve(["OOO", "OOO", "OOO"]))
-    print(sol.solve(["X"]))
-    print(sol.solve(["XXXX", "XOOX", "XXOX", "XOXX"]))
+    sol.solve(["XOX", "OXO", "XOX"])
+    # print(sol.solve(["O"]))
+    # print(sol.solve(["OOO", "OOO", "OOO"]))
+    # print(sol.solve(["X"]))
+    # print(sol.solve(["XXXX", "XOOX", "XXOX", "XOXX"]))
