@@ -21,7 +21,22 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: int
     def maxPathSum(self, root):
-        pass
+        lrPathMax = root.val + max(self.maxPathDown(root.left), 0) + max(self.maxPathDown(root.right), 0)
+        leftPathMax = self.maxPathDown(root.left)
+        rightPathMax = self.maxPathDown(root.right)
+        return max(lrPathMax, leftPathMax, rightPathMax)
+
+    def maxPathDown(self, root):
+        if not root:
+            return 0
+        maxLeftPathDown = self.maxPathDown(root.left)
+        maxRightPathDown = self.maxPathDown(root.right)
+        if maxLeftPathDown <= 0 and maxRightPathDown <= 0:
+            return root.val
+        if maxLeftPathDown > 0 and maxLeftPathDown >= maxRightPathDown:
+            return maxLeftPathDown
+        if maxRightPathDown > 0 and maxRightPathDown >= maxLeftPathDown:
+            return maxRightPathDown
 
 if __name__ == '__main__':
     sol = Solution()
