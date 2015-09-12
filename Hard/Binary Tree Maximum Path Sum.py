@@ -24,9 +24,9 @@ class Solution(object):
         lrPathMax = root.val + max(self.maxPathDown(root.left), 0) + max(self.maxPathDown(root.right), 0)
         leftPathMax, rightPathMax = lrPathMax, lrPathMax
         if root.left:
-            leftPathMax = self.maxPathDown(root.left)
+            leftPathMax = self.maxPathSum(root.left)
         if root.right:
-            rightPathMax = self.maxPathDown(root.right)
+            rightPathMax = self.maxPathSum(root.right)
         return max(lrPathMax, leftPathMax, rightPathMax)
 
     def maxPathDown(self, root):
@@ -37,9 +37,9 @@ class Solution(object):
         if maxLeftPathDown <= 0 and maxRightPathDown <= 0:
             return root.val
         if maxLeftPathDown > 0 and maxLeftPathDown >= maxRightPathDown:
-            return maxLeftPathDown
+            return root.val + maxLeftPathDown
         if maxRightPathDown > 0 and maxRightPathDown >= maxLeftPathDown:
-            return maxRightPathDown
+            return root.val + maxRightPathDown
 
 if __name__ == '__main__':
     sol = Solution()
