@@ -21,12 +21,11 @@ class Solution(object):
     # :type root: TreeNode
     # :rtype: int
     def maxPathSum(self, root):
+        if not root:
+            return 0
         lrPathMax = root.val + max(self.maxPathDown(root.left), 0) + max(self.maxPathDown(root.right), 0)
-        leftPathMax, rightPathMax = lrPathMax, lrPathMax
-        if root.left:
-            leftPathMax = self.maxPathSum(root.left)
-        if root.right:
-            rightPathMax = self.maxPathSum(root.right)
+        leftPathMax = self.maxPathSum(root.left)
+        rightPathMax = self.maxPathSum(root.right)
         return max(lrPathMax, leftPathMax, rightPathMax)
 
     def maxPathDown(self, root):
