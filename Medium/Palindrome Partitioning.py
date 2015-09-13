@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+基本的回溯法 先切分后判断 循环加递归
+'''
+
 import copy
 
 class Solution(object):
@@ -37,6 +41,6 @@ if __name__ == '__main__':
     print(sol.isPalindrome("1"))
     print(sol.isPalindrome("111"))
     print(sol.isPalindrome("dfd"))
-
     sol.partition("a")
-    # sol.partition("aab")
+    sol.partition("aab")
+    sol.partition("cbbbcc")
