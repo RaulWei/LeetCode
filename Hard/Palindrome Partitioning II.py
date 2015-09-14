@@ -22,7 +22,11 @@ class Solution(object):
             for j in range(i, lens)[::-1]:
                 if s[i] == s[j] and (j - i < 2 or p[i + 1][j - 1] is True):
                     p[i][j] = True
-                    
+                    if j == lens - 1:
+                        f[i] = 0
+                    else:
+                        f[i] = min(f[i], 1 + f[j + 1])
+        return f[0]
 
 if __name__ == '__main__':
     sol = Solution()
