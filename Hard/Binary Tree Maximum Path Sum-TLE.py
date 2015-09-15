@@ -48,5 +48,5 @@ if __name__ == '__main__':
     p4 = TreeNode(-3)
     p1.left = p2
     p1.right = p3
-    # sol.maxPathSum(p1)
+    print(sol.maxPathSum(p1))
     print(sol.maxPathSum(p4))
