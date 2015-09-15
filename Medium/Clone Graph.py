@@ -13,21 +13,21 @@ class Solution(object):
     # :rtype: UndirectedGraphNode
     def cloneGraph(self, node):
         if not node:
-            return None
+            return node
         if node.label not in self.hasCopyed:
             new_node = UndirectedGraphNode(node.label)
             self.hasCopyed[new_node.label] = new_node
             for n in node.neighbors:
-                new_node.neighbors.append(self.cloneGraph(n))
-            return new_node
+                self.hasCopyed[new_node.label].neighbors.append(self.cloneGraph(n))
+            return self.hasCopyed[new_node.label]
         else:
             return self.hasCopyed[node.label]
 
 
 if __name__ == '__main__':
-    p1 = UndirectedGraphNode(0)
-    p1.neighbors.append(p1)
-    p1.neighbors.append(p1)
+    p1 = UndirectedGraphNode(-1)
+    p2 = UndirectedGraphNode(1)
+    p1.neighbors.append(p2)
     sol = Solution()
     p = sol.cloneGraph(p1)
     pass
