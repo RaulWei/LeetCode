@@ -1,6 +1,13 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+两遍循环
+第一遍：从左到右 随着排名增高 得到糖果也增多
+第二遍：从右到左 随着排名增高 推算糖果数 如有需要则更新
+最后返回糖果总数
+'''
+
 class Solution(object):
     # :type ratings: List[int]
     # :rtype: int
