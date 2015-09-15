@@ -5,18 +5,13 @@ class Solution(object):
     # :type ratings: List[int]
     # :rtype: int
     def candy(self, ratings):
-        getCandys = [0] * len(ratings)
-        getCandys[0] = 1
+        getCandys = [1] * len(ratings)
         for i in range(1, len(ratings)):
             if ratings[i] > ratings[i - 1]:
                 getCandys[i] = getCandys[i - 1] + 1
-            else:
-                getCandys[i] = 1
-                j = i
-                while ratings[j] < ratings[j - 1]:
-                    if getCandys[j] >= getCandys[j - 1]:
-                        getCandys[j - 1] += 1
-                    j -= 1
+        for i in range(1, len(ratings))[::-1]:
+            if ratings[i] < ratings[i - 1]:
+                getCandys[i - 1] = max(getCandys[i - 1], getCandys[i] + 1)
         return sum(getCandys)
 
 if __name__ == '__main__':
