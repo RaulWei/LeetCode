@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+这题也是看了题解才有的想法 看完题解觉得还蛮简单的
+http://www.cnblogs.com/TenosDoIt/p/3387000.html
+'''
+
 # Definition for singly-linked list with a random pointer.
 class RandomListNode(object):
     def __init__(self, x):
