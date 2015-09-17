@@ -17,7 +17,28 @@ class Solution(object):
     # :type points: List[Point]
     # :rtype: int
     def maxPoints(self, points):
-        pass
+        max_points = 0
+        for p1 in points:
+            slope, copy, inner_max_points = dict(), 0, 0
+            for p2 in points:
+                if p1 == p2:
+                    continue
+                elif p1.x == p2.x and p1.y == p2.y:
+                    copy += 1
+                else:
+                    fz = p1.y - p2.y
+                    fm = p1.x - p2.x
+                    gcd = self.gcd(fz, fm)
+                    fz /= gcd
+                    fm /= gcd
+                    slope[[fz, fm]] += 1
+                    inner_max_points = max(inner_max_points, slope[[fz, fm]])
+            max_points = max(max_points, inner_max_points)
+
+    def gcd(self, fz, fm):
+        if fm == 0:
+            return fz
+        return self.gcd(fm, fz % fm)
 
 if __name__ == '__main__':
     sol = Solution()
