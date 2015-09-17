@@ -1,6 +1,13 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+回溯 + 剪枝
+例如 "aaaaaaaaab", dict = ["a", "aaa", "aaaaaaa"]
+在剪枝的时候每层递归 我们从右向左判断 "ab", "aab", "aaab", "aaaab" .. "aaaaaab" .. 在不在dict 如果全都不在说明无解 return
+而我们在递归做word break的时候要从左向右 切成"a a a a a a a a a b", "a aa a a a a a a a b" ...
+'''
+
 class Solution(object):
     # :type s: str
     # :type wordDict: Set[str]
