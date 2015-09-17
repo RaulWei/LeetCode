@@ -3,6 +3,7 @@ __author__ = 'wang'
 
 '''
 注意 这里的key-value对中的key并不是下标的意思
+妈的 key还可以一样
 '''
 
 class LRUCache(object):
@@ -33,8 +34,8 @@ class LRUCache(object):
             self.m_cache.insert(0, [key, value])
             self.m_map[key] = [key, value]
             if len(self.m_cache) > self.m_capacity:
-                self.m_cache.pop()
-                self.m_map.pop(key)
+                erase = self.m_cache.pop()
+                self.m_map.pop(erase[0])
         else:
             self.m_map[key][1] = value
             self.mov_to_head(key)
@@ -48,3 +49,6 @@ if __name__ == '__main__':
     lru = LRUCache(1)
     lru.set(2, 1)
     print(lru.get(2))
+    lru.set(3, 2)
+    print(lru.get(2))
+    print(lru.get(3))
