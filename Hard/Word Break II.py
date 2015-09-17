@@ -18,17 +18,23 @@ class Solution(object):
         for i in range(start, len(s) + 1):
             if s[start: i] in wordDict:
                 break
-            elif i == len(s):
-                res = []
+            elif i == len(s) and start != len(s):
+                # res = []
                 return False
         for i in range(start, len(s) + 1):
             if s[start: i] in wordDict:
                 res.append(s[start: i])
-                if not self.backtracking(ret, res, s, wordDict, i):
+                if self.backtracking(ret, res, s, wordDict, i):
+                    res.pop()
+                else:
                     return
-                res.pop()
+                # if not self.backtracking(ret, res, s, wordDict, i):
+                #     return
+                # res.pop()
+        return True
 
 if __name__ == '__main__':
     sol = Solution()
+    sol.wordBreak("aaaaaaa", set(["aaaa", "aaa"]))
     # sol.wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",set(["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]))
-    sol.wordBreak("catsanddog", set(["cat", "cats", "and", "sand", "dog"]))
+    # sol.wordBreak("catsanddog", set(["cat", "cats", "and", "sand", "dog"]))
