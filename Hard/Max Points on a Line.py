@@ -2,7 +2,7 @@
 __author__ = 'wang'
 
 '''
-http://fisherlei.blogspot.lt/2013/12/leetcode-max-points-on-line-solution.html
+http://fisherlei.blogspot.jp/2013/12/leetcode-max-points-on-line-solution.html
 https://leetcode.com/discuss/9011/c-o-n-2-solution-for-your-reference
 map中不要以斜率为key 因为斜率是小数 如果是无穷小数的时候会截断导致不准确 以[分子, 分母]为key比较好
 '''
@@ -31,9 +31,13 @@ class Solution(object):
                     gcd = self.gcd(fz, fm)
                     fz /= gcd
                     fm /= gcd
-                    slope[[fz, fm]] += 1
-                    inner_max_points = max(inner_max_points, slope[[fz, fm]])
-            max_points = max(max_points, inner_max_points)
+                    if (fz, fm) in slope:
+                        slope[(fz, fm)] += 1
+                    else:
+                        slope[(fz, fm)] = 1
+                    inner_max_points = max(inner_max_points, slope[(fz, fm)])
+            max_points = max(max_points, inner_max_points + copy + 1)
+        return max_points
 
     def gcd(self, fz, fm):
         if fm == 0:
@@ -42,3 +46,7 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
+    p1 = Point(1, 1)
+    p2 = Point(2, 2)
+    p3 = Point(3, 3)
+    print(sol.maxPoints([p1, p2, p3]))
