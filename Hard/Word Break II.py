@@ -11,26 +11,23 @@ class Solution(object):
         return ret
 
     def backtracking(self, ret, res, s, wordDict, start):
-        if start == len(s):
+        if start == len(s): # 得到合法解
             str = ' '.join(res)
             ret.append(str)
-            return True
+            return
+        # 剪枝 从右向左遍历 不行这return
         for i in range(start, len(s) + 1)[::-1]:
             if s[i:] in wordDict:
                 break
             elif i == start and start != len(s):
-                # res = []
-                return False
+                return
+        # 递归回溯 从左向右遍历
         for i in range(start, len(s) + 1):
             if s[start: i] in wordDict:
                 res.append(s[start: i])
-                # if self.backtracking(ret, res, s, wordDict, i):
-                #     res.pop()
-                # else:
-                #     return
                 self.backtracking(ret, res, s, wordDict, i)
                 res.pop()
-        return True
+        return
 
 if __name__ == '__main__':
     sol = Solution()
