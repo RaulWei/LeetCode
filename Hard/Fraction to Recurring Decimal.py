@@ -6,37 +6,36 @@ class Solution(object):
     # :type denominator: int
     # :rtype: str
     def fractionToDecimal(self, numerator, denominator):
-        res, last_numerator, flag = "", -1, 0
+        res, last_numerator, flag = "", dict(), 0
+        if numerator == 0:
+            return 0
+        if (numerator < 0 and denominator > 0) or (numerator > 0 and denominator < 0):
+            res += '-'
+        numerator = abs(numerator)
+        denominator = abs(denominator)
         while True:
             shang = numerator / denominator
-            # res.append(shang)
-            if not res:
+            if not res or (len(res) == 1 and res[0] == '-'):
                 res += str(shang)
                 res += '.'
             else:
                 res += str(shang)
             numerator = (numerator - denominator * shang) * 10
-            if numerator == last_numerator:
-                flag = 1
-                tmp = res[-1]
-                res = res[:-1] + '(' + tmp + ')'
+            if numerator in last_numerator:
+                loc = last_numerator[numerator]
+                res = res[:loc] + '(' + res[loc:] + ')'
                 break
             if numerator == 0:
                 if res[-1] == '.':
                     res = res[:-1]
-                flag = 2
                 break
-            last_numerator = numerator
-        if flag == 1:   # 循环小数
-            pass
-        if flag == 2:   # 能够整除
-            pass
+            last_numerator[numerator] = len(res)
         return res
 
 if __name__ == '__main__':
     sol = Solution()
     print(sol.fractionToDecimal(1, 99))
-    # sol.fractionToDecimal(20, 30)
-    # sol.fractionToDecimal(1, 3)
-    # sol.fractionToDecimal(1, 2)
-    # sol.fractionToDecimal(2, 1)
+    print(sol.fractionToDecimal(20, 30))
+    print(sol.fractionToDecimal(1, 3))
+    print(sol.fractionToDecimal(1, 2))
+    print(sol.fractionToDecimal(2, 1))
