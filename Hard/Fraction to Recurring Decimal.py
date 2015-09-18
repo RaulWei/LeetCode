@@ -8,7 +8,7 @@ class Solution(object):
     def fractionToDecimal(self, numerator, denominator):
         res, last_numerator, flag = "", dict(), 0
         if numerator == 0:
-            return 0
+            return "0"
         if (numerator < 0 and denominator > 0) or (numerator > 0 and denominator < 0):
             res += '-'
         numerator = abs(numerator)
@@ -39,3 +39,5 @@ if __name__ == '__main__':
     print(sol.fractionToDecimal(1, 3))
     print(sol.fractionToDecimal(1, 2))
     print(sol.fractionToDecimal(2, 1))
+    print(sol.fractionToDecimal(-2, 1))
+    print(sol.fractionToDecimal(1, -99))
