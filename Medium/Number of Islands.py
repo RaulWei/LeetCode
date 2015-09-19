@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+leetcode上中等难度的题基本写出来就差不多能过了
+BFS一下搞定
+'''
+
 class Solution(object):
     # :type grid: List[List[str]]
     # :rtype: int
