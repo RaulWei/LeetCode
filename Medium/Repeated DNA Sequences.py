@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+从字符串中找10个字符为一组重复出现的子字符串
+利用字典轻松搞定
+'''
+
 class Solution(object):
     # :type s: str
     # :rtype: List[str]
