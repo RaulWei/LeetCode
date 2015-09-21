@@ -1,12 +1,17 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+拓扑排序的前身是判断有向图是否存在环
+本题就是判断有向图是否存在环的问题
+'''
+
 class Solution(object):
     # :type numCourses: int
     # :type prerequisites: List[List[int]]
     # :rtype: bool
     def canFinish(self, numCourses, prerequisites):
-        in_degree, next = dict(), dict()
+        in_degree, next = dict(), dict()    # 构建入度字典 key为节点值 value为入度; 构建next字典 key为当前节点 value连接的节点们
         for edge in prerequisites:
             if edge[0] not in in_degree:
                 in_degree[edge[0]] = 0
@@ -19,6 +24,8 @@ class Solution(object):
             else:
                 next[edge[0]].append(edge[1])
         while in_degree:
+            # 找到入度为0的节点 POP 继续找
+            # 如果找不到入度为0的节点 说明存在有向图的环 返回False
             find = False
             for key in in_degree:
                 if in_degree[key] == 0:
