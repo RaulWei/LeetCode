@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+拓扑排序
+但是leetcode只要求给出一种情况即可 相对简单多了
+'''
+
 class Solution(object):
     # :type numCourses: int
     # :type prerequisites: List[List[int]]
