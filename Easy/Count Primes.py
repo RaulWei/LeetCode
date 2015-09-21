@@ -1,6 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+统计小于n的素数的个数
+Sieve of Eratosthenes 算法
+'''
+
 import math
 
 class Solution(object):
