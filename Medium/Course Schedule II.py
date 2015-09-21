@@ -4,17 +4,14 @@ __author__ = 'wang'
 class Solution(object):
     # :type numCourses: int
     # :type prerequisites: List[List[int]]
-    # :rtype: bool
+    # :rtype: List[int]
     def findOrder(self, numCourses, prerequisites):
         ret = []
         in_degree, next = dict(), dict()    # 构建入度字典 key为节点值 value为入度; 构建next字典 key为当前节点 value连接的节点们
+        for point in range(numCourses):
+            in_degree[point] = 0
         for edge in prerequisites:
-            if edge[0] not in in_degree:
-                in_degree[edge[0]] = 0
-            if edge[1] not in in_degree:
-                in_degree[edge[1]] = 1
-            else:
-                in_degree[edge[1]] += 1
+            in_degree[edge[1]] += 1
             if edge[0] not in next:
                 next[edge[0]] = [edge[1]]
             else:
