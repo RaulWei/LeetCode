@@ -3,6 +3,10 @@ __author__ = 'wang'
 
 '''
 f(x, y)表示从[x,y]到右下角所需的最少生命点数
+初态：f[row_n - 1][col_n - 1] = max(-dungeon[row_n - 1][col_n - 1], 0)
+终态：f[0][0] + 1
+递推公式：
+除却最下面一行和最右边一列 f[r][c] = max(0, min(f[r + 1][c], f[r][c + 1]) - dungeon[r][c])
 '''
 
 class Solution(object):
