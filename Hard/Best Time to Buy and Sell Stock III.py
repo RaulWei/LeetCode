@@ -7,8 +7,8 @@ f[k, i]表示从prices[0]到prices[i]最多经过k次transactions所能够获得
 终态：max(f[k, i])
 递推公式：
 f[k, i] = max(在i之前就已经得到最大利润, i处卖出 j处买入所获得的利润 + f[k - 1, j - 1])
-        = max(f[k, i - 1], prices[i] - prices[j] + f[k - 1, j - 1]) 0 <= j < i
-        = max(f[k, i - 1], prices[i] + max(f[k - 1, j - 1] - prices[j]) (0 <= j < i) ))
+        = max(f[k, i - 1], prices[i] - prices[j] + f[k - 1, j - 1]) （0 <= j < i）
+        = max(f[k, i - 1], prices[i] + max(f[k - 1, j - 1] - prices[j]) (0 <= j < i)
 
 j的取值是[0,i) 没必要再来个循环求max(f[k - 1, j] - prices[j]) 这样会TLE 直接合在i的这层循环中做 两重循环不超时
 '''
