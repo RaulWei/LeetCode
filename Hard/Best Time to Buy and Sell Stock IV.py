@@ -19,22 +19,21 @@ class Solution(object):
         if not prices:
             return 0
 
-        max_prof_i, max_prof_k = 0, 0
-        f = [[0 for col in range(len(prices))] for row in range(2)]
+        # 剪枝
+        if K > len(prices) / 2:
+            ret = 0
+            for i in range(1, len(prices)):
+                ret += prices[i] - prices[i - 1] if prices[i] > prices[i - 1] else 0
+            return ret
 
-        # 递推
+        # 动态规划
+        f = [[0 for col in range(len(prices))] for row in range(2)]
         for k in xrange(1, K + 1):
             max_tmp = f[(k - 1) % 2][0] - prices[0]
             for i in range(1, len(prices)):
                 f[k % 2][i] = max(f[k % 2][i - 1], prices[i] + max_tmp)
                 max_tmp = max(max_tmp, f[(k - 1) % 2][i - 1] - prices[i])
-                max_prof_i = max(max_prof_i, f[k % 2][i])
-            if max_prof_i > max_prof_k:
-                max_prof_k = max_prof_i
-            else:
-                return max_prof_i
-
-        return max_prof_k
+        return f[K % 2][len(prices) - 1]
 
 if __name__ == '__main__':
     sol = Solution()
