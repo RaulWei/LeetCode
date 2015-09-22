@@ -20,6 +20,8 @@ class Solution(object):
             return 0
 
         # 剪枝
+        # 在i处只能买或者卖 当可交易次数超过len/2时 超过最频繁交易次数 肯定K有多余
+        # 这种情况下求最大利润 只要相邻price有上升就可以计入总利润中
         if K > len(prices) / 2:
             ret = 0
             for i in range(1, len(prices)):
@@ -27,8 +29,8 @@ class Solution(object):
             return ret
 
         # 动态规划
-        f = [[0 for col in range(len(prices))] for row in range(2)]
-        for k in xrange(1, K + 1):
+        f = [[0 for col in range(len(prices))] for row in range(2)] # 不需要申请K行 因为每次只用到 k 和 k-1 后面的操作用模就可以了
+        for k in xrange(1, K + 1):  # 这里K很大 如果用range生成的list太大会报内存错误 所以这里用迭代器
             max_tmp = f[(k - 1) % 2][0] - prices[0]
             for i in range(1, len(prices)):
                 f[k % 2][i] = max(f[k % 2][i - 1], prices[i] + max_tmp)
