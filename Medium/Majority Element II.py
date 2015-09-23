@@ -3,6 +3,8 @@ __author__ = 'wang'
 
 '''
 找到所有出现次数超过 N/3次的数 这样的数肯定不会超过两个吧
+多数投票算法的改进版本
+参考 http://bookshadow.com/weblog/2015/06/29/leetcode-majority-element-ii/
 '''
 
 class Solution(object):
