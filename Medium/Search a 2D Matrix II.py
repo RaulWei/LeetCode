@@ -1,6 +1,15 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
 
+'''
+给定的matrix的每行从左到右是升序的 每列从上到下是升序的
+初始位置cur在第一行最后一列
+如果target比cur大 那么第一行淘汰 cur下移一位
+如果target比cur小 那么第一列淘汰 cur左移一位
+如果target与cur相等 返回True
+以此类推
+'''
+
 class Solution(object):
     # :type matrix: List[List[int]]
     # :type target: int
@@ -26,15 +35,7 @@ if __name__ == '__main__':
       [10, 13, 14, 17, 24],
       [18, 21, 23, 26, 30]
     ]
-    matrix_2 = [[1, 1]]
-    matrix_3 = [
-        [ 1, 2, 3, 4, 5],
-        [ 6, 7, 8, 9,10],
-        [11,12,13,14,15],
-        [16,17,18,19,20],
-        [21,22,23,24,25]
-    ]
-    print(sol.searchMatrix(matrix_3, 15))
+    print(sol.searchMatrix(matrix, 15))
     print(sol.searchMatrix(matrix, 5))
     print(sol.searchMatrix(matrix, 20))
-    print(sol.searchMatrix(matrix_2, 0))
+    print(sol.searchMatrix(matrix, 0))
