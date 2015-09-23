@@ -1,6 +1,13 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+这题自己想的时候又想复杂了  leetcode都刷了200多题了 还是长进很少啊
+分治 + 递归
+其实想法和这个差不多了 只是更复杂 没有这个清晰
+重点是要利用递归的返回是一组结果数 然后利用这些数做相应处理得到最后结果
+'''
+
 class Solution(object):
     # :type input: str
     # :rtype: List[int]
