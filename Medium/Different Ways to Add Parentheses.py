@@ -14,7 +14,7 @@ class Solution(object):
     def diffWaysToCompute(self, input):
         ret = []
         for i in range(len(input)):
-            if input[i] == '*' or input[i] == '-' or input[i] == '+':
+            if input[i] == '*' or input[i] == '-' or input[i] == '+':   # 题目说只有这三种操作
                 left_res = self.diffWaysToCompute(input[:i])
                 right_res = self.diffWaysToCompute(input[i + 1:])
                 for x in left_res:
