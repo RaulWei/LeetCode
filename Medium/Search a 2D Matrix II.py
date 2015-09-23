@@ -14,14 +14,10 @@ class Solution(object):
             return False
         if start[0] >= len(matrix) or start[1] >= len(matrix[0]) or end[0] >= len(matrix) or end[1] >= len(matrix[0]):
             return False
+        if start[0] > end[0] or start[1] > end[1]:
+            return False
         if start == end:
             return True if target == matrix[start[0]][start[1]] else False
-        # if start[0] + 1 == end[0] and start[1] + 1 == end[1]:
-        #     direction = [[0, 0], [0, 1], [1, 0], [1, 1]]
-        #     for die in direction:
-        #         if target == matrix[start[0] + die[0]][start[1] + die[1]]:
-        #             return True
-        #     return False
         med = [(start[0] + end[0]) / 2, (start[1] + end[1]) / 2]
         if target == matrix[med[0]][med[1]]:
             return True
@@ -48,6 +44,6 @@ if __name__ == '__main__':
         [21,22,23,24,25]
     ]
     print(sol.searchMatrix(matrix_3, 15))
-    # print(sol.searchMatrix(matrix, 5))
-    # print(sol.searchMatrix(matrix, 20))
-    # print(sol.searchMatrix(matrix_2, 0))
+    print(sol.searchMatrix(matrix, 5))
+    print(sol.searchMatrix(matrix, 20))
+    print(sol.searchMatrix(matrix_2, 0))
