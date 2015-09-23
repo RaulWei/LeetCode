@@ -40,6 +40,14 @@ if __name__ == '__main__':
       [18, 21, 23, 26, 30]
     ]
     matrix_2 = [[1, 1]]
-    print(sol.searchMatrix(matrix, 5))
-    print(sol.searchMatrix(matrix, 20))
-    print(sol.searchMatrix(matrix_2, 0))
+    matrix_3 = [
+        [ 1, 2, 3, 4, 5],
+        [ 6, 7, 8, 9,10],
+        [11,12,13,14,15],
+        [16,17,18,19,20],
+        [21,22,23,24,25]
+    ]
+    print(sol.searchMatrix(matrix_3, 15))
+    # print(sol.searchMatrix(matrix, 5))
+    # print(sol.searchMatrix(matrix, 20))
+    # print(sol.searchMatrix(matrix_2, 0))
