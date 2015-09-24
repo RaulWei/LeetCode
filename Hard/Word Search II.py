@@ -79,41 +79,40 @@ class Solution(object):
     # :type words: List[str]
     # :rtype: List[str]
     def findWords(self, board, words):
-        ret = []
+        trie, ret = Trie(), []
         for w in words:
-            if self.exist(board, w):
-                ret.append(w)
-        return ret
-
-    # :type board: List[List[str]]
-    # :type word: str
-    # :rtype: bool
-    def exist(self, board, word):
+            trie.insert(w)
         walked = [[0 for col in range(len(board[0]))] for row in range(len(board))]
         for i in range(len(board)):
             for j in range(len(board[i])):
-                if board[i][j] == word[0]:
-                    walked[i][j] = 1
-                    if self.DFS(i, j, board, word, 1, walked):
-                        return True
-                    walked[i][j] = 0
-        return False
+                self.dfsFindWords(board, i, j, walked, "", trie, ret)
+        return ret
 
-    def DFS(self, i, j, board, word, index, walked):
-        if index == len(word):
-            return True
+    def dfsFindWords(self, board, x, y, walked, str, trie, ret):
+        if x < 0 or y < 0 or x >= len(board) or y >= len(board[0]):
+            return
+        if walked[x][y]:
+            return
+        str += board[x][y]
+        if not trie.startsWith(str):
+            return
+        if trie.search(str):
+            ret.append(str)
+        walked[x][y] = 1
         dirc = [[0, 1], [1, 0], [0, -1], [-1, 0]]   # 右 下 左 上
         for go in dirc:
-            new_i, new_j = i + go[0], j + go[1]
-            if 0 <= new_i < len(board) and 0 <= new_j < len(board[new_i]) and board[new_i][new_j] == word[index] and walked[new_i][new_j] == 0:
-                # 新点合法 且能匹配 且没走过
-                walked[new_i][new_j] = 1
-                if self.DFS(new_i, new_j, board, word, index + 1, walked):
-                    return True
-                walked[new_i][new_j] = 0    # 注意复原
-        return False
+            new_x, new_y = x + go[0], y + go[1]
+            self.dfsFindWords(board, new_x, new_y, walked, str, trie, ret)
+        walked[x][y] = 0
+
 
 if __name__ == '__main__':
-    trie = Trie()
     sol = Solution()
-    print(sol.findWords(["oaan", "etae", "ihkr", "iflv"], ["eat", "oath"]))
+    board = [
+      ['o','a','a','n'],
+      ['e','t','a','e'],
+      ['i','h','k','r'],
+      ['i','f','l','v']
+    ]
+    words = ["oath","pea","eat","rain"]
+    print(sol.findWords(board, words))
