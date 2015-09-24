@@ -1,6 +1,17 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
+
 import collections
+
+'''
+终于A了 简直要哭了 这题A的特别艰难 一直TLE
+引入Trie后 我在findWords中构造出str 然后去判断它是否startsWith 是否可以从Trie中search
+这样还是太慢了
+
+更快的做法是维持一个node（Trie中的节点）
+board走一步 node往下一层 同时做相应处理 这样是更快的 可以AC
+最后的AC的代码中其实Trie中的search和startsWith是没有用到的
+'''
 
 class TrieNode:
     # Initialize your data structure here.
