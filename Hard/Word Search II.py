@@ -108,11 +108,19 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
-    board = [
-      ['o','a','a','n'],
-      ['e','t','a','e'],
-      ['i','h','k','r'],
-      ['i','f','l','v']
-    ]
-    words = ["oath","pea","eat","rain"]
-    print(sol.findWords(board, words))
+    # board = [
+    #   ['o','a','a','n'],
+    #   ['e','t','a','e'],
+    #   ['i','h','k','r'],
+    #   ['i','f','l','v']
+    # ]
+    # words = ["oath","pea","eat","rain"]
+    # print(sol.findWords(board, words))
+    #
+    # board_new = ["baabab","abaaaa","abaaab","ababba","aabbab","aabbba","aabaab"]
+    # words_new = ["bbaabaabaaaaabaababaaaaababb","aabbaaabaaabaabaaaaaabbaaaba","babaababbbbbbbaabaababaabaaa","bbbaaabaabbaaababababbbbbaaa","babbabbbbaabbabaaaaaabbbaaab","bbbababbbbbbbababbabbbbbabaa","babababbababaabbbbabbbbabbba","abbbbbbaabaaabaaababaabbabba","aabaabababbbbbbababbbababbaa","aabbbbabbaababaaaabababbaaba","ababaababaaabbabbaabbaabbaba","abaabbbaaaaababbbaaaaabbbaab","aabbabaabaabbabababaaabbbaab","baaabaaaabbabaaabaabababaaaa","aaabbabaaaababbabbaabbaabbaa","aaabaaaaabaabbabaabbbbaabaaa","abbaabbaaaabbaababababbaabbb","baabaababbbbaaaabaaabbababbb","aabaababbaababbaaabaabababab","abbaaabbaabaabaabbbbaabbbbbb","aaababaabbaaabbbaaabbabbabab","bbababbbabbbbabbbbabbbbbabaa","abbbaabbbaaababbbababbababba","bbbbbbbabbbababbabaabababaab","aaaababaabbbbabaaaaabaaaaabb","bbaaabbbbabbaaabbaabbabbaaba","aabaabbbbaabaabbabaabababaaa","abbababbbaababaabbababababbb","aabbbabbaaaababbbbabbababbbb","babbbaabababbbbbbbbbaabbabaa"]
+    # print(sol.findWords(board_new, words_new))
+
+    board_fuck = ["a"]
+    words_fuck = []
+    print(sol.findWords(board_fuck, words_fuck))
