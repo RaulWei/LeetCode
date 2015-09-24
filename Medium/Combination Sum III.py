@@ -3,12 +3,18 @@ __author__ = 'weimw'
 
 import copy
 
+'''
+简单递归回溯
+注意返回条件
+arr的元素个数为k时 无论如何都得return了 只不过先判断一个sum 如果等于n的话记录ret
+'''
+
 class Solution(object):
         # :type k: int
         # :type n: int
         # :rtype: List[List[int]]
     def combinationSum3(self, k, n):
-        if n > sum([i for i in range(10)]):
+        if n > sum([i for i in range(10)]):     # 规定构成组合的数字只能在[1, 9]之间
             return []
         ret = []
         self.DFS(k, n, 1, ret, [])
