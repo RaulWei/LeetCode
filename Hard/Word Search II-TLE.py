@@ -51,6 +51,7 @@ class Trie:
         return True
 
 class Solution(object):
+
     # :type board: List[List[str]]
     # :type words: List[str]
     # :rtype: List[str]
@@ -85,10 +86,10 @@ class Solution(object):
 if __name__ == '__main__':
     sol = Solution()
     board = [
-      ['o','a','a','n'],
-      ['e','t','a','e'],
-      ['i','h','k','r'],
-      ['i','f','l','v']
+      ['o', 'a', 'a', 'n'],
+      ['e', 't', 'a', 'e'],
+      ['i', 'h', 'k', 'r'],
+      ['i', 'f', 'l', 'v']
     ]
     words = ["oath","pea","eat","rain"]
     print(sol.findWords(board, words))
