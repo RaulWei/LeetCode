@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'wang'
+import collections
 
 class TrieNode:
     # Initialize your data structure here.
     def __init__(self, char=''):
-        self.son = []
+        self.son = collections.defaultdict(TrieNode)
         self.isWord = False
         self.char = char
 
@@ -19,17 +20,9 @@ class Trie:
     def insert(self, word):
         root = self.root
         for i in range(len(word)):
-            find = False
-            for son in root.son:
-                if word[i] == son.char:
-                    # 在root的son中找到word的某个字符
-                    root = son
-                    find = True
-                    break
-            if find is False:
-                # w不存在于root的son中
-                root.son.append(TrieNode(word[i]))
-                root = root.son[-1]
+            if word[i] not in root.son:
+                root.son[word[i]] = TrieNode(word[i])
+            root = root.son[word[i]]
             if i == len(word) - 1:
                 root.isWord = True
         return
@@ -40,20 +33,11 @@ class Trie:
     def search(self, word):
         root = self.root
         for i in range(len(word)):
-            find = False
-            for son in root.son:
-                if word[i] == son.char:
-                    # 找到word[i]
-                    root = son
-                    find = True
-                    if i == len(word) - 1 and root.isWord is True:
-                        return True
-                    break
-            if find is False:
+            if word[i] not in root.son:
                 # word[i]没找到 可以直接返回False
                 return False
-        # 例如insert('ab'), search('a')
-        return False
+            root = root.son[word[i]]
+        return root.isWord
 
     # @param {string} prefix
     # @return {boolean}
@@ -62,17 +46,10 @@ class Trie:
     def startsWith(self, prefix):
         root = self.root
         for i in range(len(prefix)):
-            find = False
-            for son in root.son:
-                if prefix[i] == son.char:
-                    root = son
-                    find = True
-                    if i == len(prefix) - 1:
-                        return True
-                    break
-            if find is False:
-                # prefix[i]没找到可以直接返回False
+            if prefix[i] not in root.son:
                 return False
+            root = root.son[prefix[i]]
+        return True
 
 class Solution(object):
     # :type board: List[List[str]]
@@ -84,42 +61,44 @@ class Solution(object):
             trie.insert(w)
         walked = [[0 for col in range(len(board[0]))] for row in range(len(board))]
         for i in range(len(board)):
-            for j in range(len(board[i])):
-                self.dfsFindWords(board, i, j, walked, "", trie, ret)
+            for j in range(len(board[0])):
+                self.dfsFindWords(board, i, j, walked, "", trie.root, ret)
         return ret
 
-    def dfsFindWords(self, board, x, y, walked, str, trie, ret):
+    def dfsFindWords(self, board, x, y, walked, str, node, ret):
+        if node.isWord:
+            ret.append(str)
+            node.isWord = False
         if x < 0 or y < 0 or x >= len(board) or y >= len(board[0]):
             return
         if walked[x][y]:
             return
         str += board[x][y]
-        if not trie.startsWith(str):
+        node = node.son[board[x][y]]
+        if not node:
             return
-        if trie.search(str):
-            ret.append(str)
         walked[x][y] = 1
         dirc = [[0, 1], [1, 0], [0, -1], [-1, 0]]   # 右 下 左 上
         for go in dirc:
             new_x, new_y = x + go[0], y + go[1]
-            self.dfsFindWords(board, new_x, new_y, walked, str, trie, ret)
+            self.dfsFindWords(board, new_x, new_y, walked, str, node, ret)
         walked[x][y] = 0
 
 
 if __name__ == '__main__':
     sol = Solution()
-    # board = [
-    #   ['o','a','a','n'],
-    #   ['e','t','a','e'],
-    #   ['i','h','k','r'],
-    #   ['i','f','l','v']
-    # ]
-    # words = ["oath","pea","eat","rain"]
-    # print(sol.findWords(board, words))
-    #
-    # board_new = ["baabab","abaaaa","abaaab","ababba","aabbab","aabbba","aabaab"]
-    # words_new = ["bbaabaabaaaaabaababaaaaababb","aabbaaabaaabaabaaaaaabbaaaba","babaababbbbbbbaabaababaabaaa","bbbaaabaabbaaababababbbbbaaa","babbabbbbaabbabaaaaaabbbaaab","bbbababbbbbbbababbabbbbbabaa","babababbababaabbbbabbbbabbba","abbbbbbaabaaabaaababaabbabba","aabaabababbbbbbababbbababbaa","aabbbbabbaababaaaabababbaaba","ababaababaaabbabbaabbaabbaba","abaabbbaaaaababbbaaaaabbbaab","aabbabaabaabbabababaaabbbaab","baaabaaaabbabaaabaabababaaaa","aaabbabaaaababbabbaabbaabbaa","aaabaaaaabaabbabaabbbbaabaaa","abbaabbaaaabbaababababbaabbb","baabaababbbbaaaabaaabbababbb","aabaababbaababbaaabaabababab","abbaaabbaabaabaabbbbaabbbbbb","aaababaabbaaabbbaaabbabbabab","bbababbbabbbbabbbbabbbbbabaa","abbbaabbbaaababbbababbababba","bbbbbbbabbbababbabaabababaab","aaaababaabbbbabaaaaabaaaaabb","bbaaabbbbabbaaabbaabbabbaaba","aabaabbbbaabaabbabaabababaaa","abbababbbaababaabbababababbb","aabbbabbaaaababbbbabbababbbb","babbbaabababbbbbbbbbaabbabaa"]
-    # print(sol.findWords(board_new, words_new))
+    board = [
+      ['o','a','a','n'],
+      ['e','t','a','e'],
+      ['i','h','k','r'],
+      ['i','f','l','v']
+    ]
+    words = ["oath","pea","eat","rain"]
+    print(sol.findWords(board, words))
+
+    board_new = ["baabab","abaaaa","abaaab","ababba","aabbab","aabbba","aabaab"]
+    words_new = ["bbaabaabaaaaabaababaaaaababb","aabbaaabaaabaabaaaaaabbaaaba","babaababbbbbbbaabaababaabaaa","bbbaaabaabbaaababababbbbbaaa","babbabbbbaabbabaaaaaabbbaaab","bbbababbbbbbbababbabbbbbabaa","babababbababaabbbbabbbbabbba","abbbbbbaabaaabaaababaabbabba","aabaabababbbbbbababbbababbaa","aabbbbabbaababaaaabababbaaba","ababaababaaabbabbaabbaabbaba","abaabbbaaaaababbbaaaaabbbaab","aabbabaabaabbabababaaabbbaab","baaabaaaabbabaaabaabababaaaa","aaabbabaaaababbabbaabbaabbaa","aaabaaaaabaabbabaabbbbaabaaa","abbaabbaaaabbaababababbaabbb","baabaababbbbaaaabaaabbababbb","aabaababbaababbaaabaabababab","abbaaabbaabaabaabbbbaabbbbbb","aaababaabbaaabbbaaabbabbabab","bbababbbabbbbabbbbabbbbbabaa","abbbaabbbaaababbbababbababba","bbbbbbbabbbababbabaabababaab","aaaababaabbbbabaaaaabaaaaabb","bbaaabbbbabbaaabbaabbabbaaba","aabaabbbbaabaabbabaabababaaa","abbababbbaababaabbababababbb","aabbbabbaaaababbbbabbababbbb","babbbaabababbbbbbbbbaabbabaa"]
+    print(sol.findWords(board_new, words_new))
 
     board_fuck = ["a"]
     words_fuck = []
