@@ -23,8 +23,7 @@ class Trie:
             if word[i] not in root.son:
                 root.son[word[i]] = TrieNode(word[i])
             root = root.son[word[i]]
-            if i == len(word) - 1:
-                root.isWord = True
+        root.isWord = True
         return
 
     # @param {string} word
@@ -62,26 +61,24 @@ class Solution(object):
         walked = [[0 for col in range(len(board[0]))] for row in range(len(board))]
         for i in range(len(board)):
             for j in range(len(board[0])):
-                self.dfsFindWords(board, i, j, walked, "", trie.root, ret)
+                self.dfsFindWords(board, i, j, walked, "", trie, ret)
         return ret
 
-    def dfsFindWords(self, board, x, y, walked, str, node, ret):
-        if node.isWord:
-            ret.append(str)
-            node.isWord = False
+    def dfsFindWords(self, board, x, y, walked, str, trie, ret):
         if x < 0 or y < 0 or x >= len(board) or y >= len(board[0]):
             return
-        if walked[x][y]:
+        if walked[x][y] == 1:
             return
         str += board[x][y]
-        node = node.son[board[x][y]]
-        if not node:
+        if not trie.startsWith(str):
             return
+        if trie.search(str) and str not in ret:
+            ret.append(str)
         walked[x][y] = 1
         dirc = [[0, 1], [1, 0], [0, -1], [-1, 0]]   # 右 下 左 上
         for go in dirc:
             new_x, new_y = x + go[0], y + go[1]
-            self.dfsFindWords(board, new_x, new_y, walked, str, node, ret)
+            self.dfsFindWords(board, new_x, new_y, walked, str, trie, ret)
         walked[x][y] = 0
 
 
