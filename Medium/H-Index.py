@@ -13,10 +13,11 @@ class Solution(object):
                 bucket[i] += 1
         ret = 0
         for key in bucket:
-            if bucket[key] == key:
+            if bucket[key] >= key:
                 ret = key
         return ret
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.hIndex([1, 1]))
     print(sol.hIndex([3, 0, 6, 1, 5]))
