@@ -3,14 +3,20 @@ __author__ = 'weimw'
 
 '''
 f(n)代表numSquares
-初态：f(0) = 0, f(1) = 1
+初态：f(i) = i
 终态：f(n)
 递推公式：
-f(n) = min(f(i) + 1 if n - i is perfect square number) 1 <= i < n
+f(n) = min(f(n), f(n - j * j) + 1), j * j <= n
+
+普通DP会超时 这里用static DP加速
 '''
 
 class Solution(object):
 
+    # 之前的写法是在__init__中定义self.f 这样一直超时
+    # python声明static的正确做法应该是如下 直接在class下初始变量
+    # 在__init__中定义的话只有在实例化类的时候才能构建
+    # OJ可能实例化多个类 如下的写法可以保证多个类共用一个static变量f 这样才是加速
     f = [0, 1]
 
     # :type n: int
