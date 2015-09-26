@@ -17,13 +17,12 @@ class Solution(object):
     def numSquares(self, n):
         f = [i for i in range(n + 1)]
         for i in range(2, n + 1):
-            for j in range(i):
-                f[i] = min(f[j] + 1, f[i]) if self.isPerfectSquareNumber(i - j) else f[i]
+            j = 1
+            while j * j <= i:
+                f[i] = min(f[i], f[i - j * j] + 1)
+                j += 1
         return f[n]
 
-    def isPerfectSquareNumber(self, num):
-        tmp = int(math.sqrt(num))
-        return tmp * tmp == num
 
 if __name__ == '__main__':
     sol = Solution()
@@ -31,3 +30,4 @@ if __name__ == '__main__':
     print(sol.numSquares(13))
     print(sol.numSquares(254))
     print(sol.numSquares(266))
+    print(sol.numSquares(9975))
