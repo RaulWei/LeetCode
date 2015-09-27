@@ -2,12 +2,13 @@
 __author__ = 'weimw'
 
 '''
-把数字转换成英文单词
+把数字转换成英文单词 模拟题
 三个数字为一组 先写一个把三个数字转换为英文单词的函数
 '''
 
 class Solution(object):
 
+    # statics variable
     table_less20 = [
         "", "One", "Two", "Three", "Four", "Five",
         "Six", "Seven", "Eight", "Nine", "Ten",
@@ -36,10 +37,7 @@ class Solution(object):
                 else:
                     ret.append(self.numberToWords_less1000(num_tmp))
             i += 1
-        ret = ret[::-1]
-        if ret[-1] == "":
-            ret.pop()
-        return ' '.join(ret)
+        return ' '.join(ret[::-1])
 
     def numberToWords_less1000(self, num):
         res = []
