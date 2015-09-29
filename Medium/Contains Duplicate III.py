@@ -23,8 +23,11 @@ class Solution(object):
             value = nums[i] - min_value
             key = value / (t + 1)
             if bucket.has_key(key) or (bucket.has_key(key - 1) and abs(bucket[key - 1] - value) <= t) or (bucket.has_key(key + 1) and abs(bucket[key + 1] - value) <= t):
+                # 若是符合 只可能存在于同一个bucket 或者 相邻bucket中
                 return True
             if len(bucket) >= k:
+                # 能进这个判断 说明之前k个元素各自进入不同bucket 否则早就return True了
+                # 题目要求i和j之间最大间距是k 所以到这里要把i - k的元素从bucket里拿掉
                 last_bucket = (nums[i - k] - min_value) / (t + 1)
                 bucket.pop(last_bucket)
             bucket[key] = value
