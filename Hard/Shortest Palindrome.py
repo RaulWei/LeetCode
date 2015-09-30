@@ -2,8 +2,10 @@
 __author__ = 'weimw'
 
 '''
-next[i]表示从s[0]到s[i]中最大前缀后缀公共元素个数
+本题其实是KMP算法中求next数组的一种应用 还没真正应用到KMP
+我设 next[i]表示从s[0]到s[i]中最大前缀后缀公共元素个数
 如 ABXYAB next[5] = 2
+了解KMP 请看 http://blog.csdn.net/v_july_v/article/details/7041827
 '''
 
 class Solution(object):
@@ -12,7 +14,6 @@ class Solution(object):
     def shortestPalindrome(self, s):
         rev_s = s[::-1]
         new_s = s + "#" + rev_s
-
         next = [0] * len(new_s)
         for i in range(1, len(new_s)):  # 求next[i]
             k = next[i - 1]
