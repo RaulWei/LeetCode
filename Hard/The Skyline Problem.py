@@ -1,12 +1,9 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
-import Queue
-
 '''
 http://segmentfault.com/a/1190000003786782
 http://www.cnblogs.com/easonliu/p/4531020.html
-堆插入 堆调整
 '''
 
 class Solution(object):
@@ -22,26 +19,26 @@ class Solution(object):
         pre, cur = 0, 0
         for h in height:
             if h[1] < 0:
-                # heap.append(-h[1])
                 heap.insert(self.getInsertPos(heap, -h[1]), -h[1])
-                # heap.put(-h[1])
             else:
                 heap.remove(h[1])
-            # cur = max(heap)
             cur = heap[-1]
             if cur != pre:
                 res.append([h[0], cur])
                 pre = cur
         return res
 
+    # :type nums: List[int] 一个升序数组
+    # :type ins: int 一个待插入的值
+    # :rtype: int 插入的位置
     def getInsertPos(self, nums, ins):
         left, right = 0, len(nums) - 1
         while left <= right:
             mid = (left + right) / 2
-            if nums[mid] < ins:     # mid这个位置肯定不可取
+            if nums[mid] < ins:     # mid这个位置肯定不可取 保证left可行性 所以最后return left
                 left = mid + 1
             elif nums[mid] > ins:
-                right = mid - 1
+                right = mid - 1     # mid说不定可取 但令right=mid-1 不保证right一定正确
             else:
                 return mid
         return left
