@@ -13,7 +13,7 @@ class Solution(object):
     def maxSlidingWindow(self, nums, k):
         queue, ret = [], []
         for i in range(len(nums)):
-            while queue and queue[0] < i - k -1:
+            while queue and queue[0] < i - k + 1:
                 queue.pop(0)
             while queue and nums[queue[0]] < nums[i]:
                 queue.pop(0)
@@ -24,4 +24,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
+    print(sol.maxSlidingWindow([1, 3, 1, 2, 0, 5], 3))
     print(sol.maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))
