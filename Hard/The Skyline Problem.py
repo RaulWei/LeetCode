@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+import Queue
+
 '''
 http://segmentfault.com/a/1190000003786782
 http://www.cnblogs.com/easonliu/p/4531020.html
@@ -21,10 +23,12 @@ class Solution(object):
         for h in height:
             if h[1] < 0:
                 # heap.append(-h[1])
-                heap.insert(self.getInsertPos(buildings, -h[1]), -h[1])
+                heap.insert(self.getInsertPos(heap, -h[1]), -h[1])
+                # heap.put(-h[1])
             else:
                 heap.remove(h[1])
-            cur = max(heap)
+            # cur = max(heap)
+            cur = heap[-1]
             if cur != pre:
                 res.append([h[0], cur])
                 pre = cur
@@ -44,5 +48,5 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
-    # print(sol.getInsertPos([1,2 ,3,7],7))
+    print(sol.getInsertPos([0],7))
     print(sol.getSkyline([[2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8]]))
