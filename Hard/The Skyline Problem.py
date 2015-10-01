@@ -1,6 +1,12 @@
 # -*- coding: UTF-8 -*-
 __author__ = 'weimw'
 
+'''
+http://segmentfault.com/a/1190000003786782
+http://www.cnblogs.com/easonliu/p/4531020.html
+堆插入 堆调整
+'''
+
 class Solution(object):
     # :type buildings: List[List[int]]
     # :rtype: List[List[int]]
