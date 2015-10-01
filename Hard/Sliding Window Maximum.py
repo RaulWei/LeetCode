@@ -11,7 +11,16 @@ class Solution(object):
     # :type k: int
     # :rtype: List[int]
     def maxSlidingWindow(self, nums, k):
-        pass
+        queue, ret = [], []
+        for i in range(len(nums)):
+            while queue and queue[0] < i - k -1:
+                queue.pop(0)
+            while queue and nums[queue[0]] < nums[i]:
+                queue.pop(0)
+            queue.append(i)
+            if i >= k - 1:
+                ret.append(nums[queue[0]])
+        return ret
 
 if __name__ == '__main__':
     sol = Solution()
